@@ -4,19 +4,16 @@ async function loadActualites() {
   if (!container) return;
 
   try {
-    // Récupère la liste des fichiers dans le dossier actualites/
     const response = await fetch('https://api.github.com/repos/sebtautou-max/vactennis/contents/actualites');
     const files = await response.json();
 
-    // Filtre uniquement les fichiers .md
     const mdFiles = files.filter(f => f.name.endsWith('.md'));
 
     if (mdFiles.length === 0) {
-      container.innerHTML = '<p>Aucune actualité pour le moment.</p>';
+      container.innerHTML = '<p class="text-muted">Aucune actualité pour le moment.</p>';
       return;
     }
 
-    // Charge le contenu de chaque fichier
     const actualites = await Promise.all(mdFiles.map(async (file) => {
       const res = await fetch(file.download_url);
       const text = await res.text();
@@ -28,11 +25,15 @@ async function loadActualites() {
 
     // Affiche les 3 dernières actualités
     container.innerHTML = actualites.slice(0, 3).map(actu => `
-      <div class="card">
-        ${actu.image ? `<img src="${actu.image}" alt="${actu.title}" style="width:100%; border-radius:8px; margin-bottom:12px;">` : ''}
-        <div class="card-content">
-          <div class="card-date">${formatDate(actu.date)}</div>
+      <div class="card actu-card">
+        ${actu.image
+          ? `<img class="card-img" src="${actu.image}" alt="${actu.title}">`
+          : `<div class="card-img" style="background: linear-gradient(135deg, #002e5d, #004a8f);"></div>`
+        }
+        <div class="card-body">
+          ${actu.category ? `<span class="label">${actu.category}</span>` : ''}
           <h3>${actu.title}</h3>
+          <span class="actu-date">${formatDate(actu.date)}</span>
           <p>${actu.excerpt}</p>
         </div>
       </div>
@@ -40,7 +41,7 @@ async function loadActualites() {
 
   } catch (error) {
     console.error('Erreur chargement actualités:', error);
-    container.innerHTML = '<p>Impossible de charger les actualités.</p>';
+    container.innerHTML = '<p class="text-muted">Impossible de charger les actualités.</p>';
   }
 }
 
@@ -74,8 +75,8 @@ function parseMarkdown(text) {
     title: meta.title || 'Sans titre',
     date: meta.date || '',
     image: meta.image || '',
+    category: meta.category || '',
     excerpt: excerpt,
-    body: body,
   };
 }
 
@@ -86,5 +87,4 @@ function formatDate(dateStr) {
   return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-// Lance le chargement au démarrage
 document.addEventListener('DOMContentLoaded', loadActualites);
