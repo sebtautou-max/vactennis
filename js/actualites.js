@@ -80,7 +80,7 @@ function renderActuPage(page) {
   grid.innerHTML = items.map(actu => `
     <div class="card actu-card">
       ${actu.image
-        ? `<div class="card-img" style="background-image: url('${actu.image}'); background-size: cover; background-position: center;"></div>`
+        ? `<div class="card-img" style="background-image: url('${actu.image}'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #f5f7fa;"></div>`
         : `<div class="card-img" style="background: linear-gradient(135deg, #002e5d, #004a8f);"></div>`
       }
       <div class="card-body">
