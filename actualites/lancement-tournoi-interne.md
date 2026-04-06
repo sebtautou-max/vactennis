@@ -1,5 +1,5 @@
 ---
-title: LANCEMENT TOURNOI INTERNE
+title: Lancement du Tournoi Interne
 date: 2025-11-12T00:00:00.000Z
 image: /img/uploads/tournoi-interne-2025-26-light.png
 ---
