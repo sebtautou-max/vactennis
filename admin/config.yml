@@ -2,7 +2,7 @@ backend:
   name: github
   repo: sebtautou-max/vactennis
   branch: main
-  site_domain: dancing-frangipane-c3fee6.netlify.app
+  site_domain: https://dancing-frangipane-c3fee6.netlify.app/
 
 
 media_folder: "img/uploads"
