@@ -2,10 +2,8 @@ backend:
   name: github
   repo: sebtautou-max/vactennis
   branch: main
-  base_url: https://api.netlify.com
+  base_url: https://oauth-proxy.sebtautou.workers.dev
   auth_endpoint: auth
-  site_domain: dancing-frangipane-c3fee6.netlify.app
-
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
