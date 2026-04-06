@@ -1,5 +1,6 @@
 ---
 title: Stages de Pâques — Places disponibles
+category: Stage
 date: 2026-04-18T00:00:00.000Z
 image: /img/uploads/stage-printemps.jpg
 ---
