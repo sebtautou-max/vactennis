@@ -16,8 +16,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["Tournoi", "Stage", "Compétition", "Club", "Résultats"], required: false }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Catégorie", name: "category", widget: "select", 
-    options: ["Tournoi", "Stage", "Compétition", "Club", "Résultats"], required: false }
