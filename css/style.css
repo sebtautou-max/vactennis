@@ -190,8 +190,10 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 
 /* Actu card */
 .actu-card { text-decoration: none; color: inherit; display: block; }
-.actu-card .card-img { height: 280px; }
+.actu-card .card-img { height: 280px; min-height: 200px; flex-shrink: 0; }
 .actu-date { font-size: 13px; color: #7a8a9a; display: block; margin: 4px 0 8px; }
+#actu-grid .card { display: flex; flex-direction: column; }
+#actu-grid .card .card-body { flex: 1; }
 
 /* ============================================
    GRIDS
