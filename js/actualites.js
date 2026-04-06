@@ -33,14 +33,14 @@ async function loadActualites() {
         <div class="grid-3" id="actu-grid"></div>
         ${actualites.length > 3 ? `
         <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-top:28px;">
-          <button id="actu-prev" onclick="actuNav(-1)" style="
+          <button id="actu-prev" onclick="actuNav(event, -1)" style="
             width:44px; height:44px; border-radius:50%; border:2px solid #002e5d;
             background:#fff; color:#002e5d; font-size:20px; cursor:pointer;
             display:flex; align-items:center; justify-content:center;
             transition: all .2s;
           ">&#8249;</button>
           <span id="actu-counter" style="font-size:14px; color:#6a7a8a; font-family:'Inter',sans-serif;"></span>
-          <button id="actu-next" onclick="actuNav(1)" style="
+          <button id="actu-next" onclick="actuNav(event, 1)" style="
             width:44px; height:44px; border-radius:50%; border:2px solid #002e5d;
             background:#002e5d; color:#fff; font-size:20px; cursor:pointer;
             display:flex; align-items:center; justify-content:center;
@@ -99,7 +99,8 @@ function renderActuPage(page) {
   window._actuPage = page;
 }
 
-window.actuNav = function(dir) {
+window.actuNav = function(event, dir) {
+  event.preventDefault();
   const actualites = window._actualites;
   const perPage = window._actuPerPage;
   const totalPages = Math.ceil(actualites.length / perPage);
