@@ -5,7 +5,7 @@ backend:
   base_url: https://oauth-proxy.sebtautou.workers.dev
   auth_endpoint: auth
 
-media_folder: "img/uploads"
+media_folder: "site/img/uploads"
 public_folder: "/img/uploads"
 
 collections:
