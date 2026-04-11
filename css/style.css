@@ -396,6 +396,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 @media (max-width: 768px) {
   /* Mobile nav */
   .navbar-toggle { display: block; }
+  .navbar-logo > a:last-child { display: none; }
   .navbar-links {
     display: none; position: absolute; top: 72px; left: 0; right: 0;
     background: #002e5d; flex-direction: column; padding: 16px 24px;
