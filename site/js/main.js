@@ -37,35 +37,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// --- Actualités loader ---
-async function loadActualites(containerId, limit = null) {
-  try {
-    const resp = await fetch('actualites/data.json');
-    if (!resp.ok) return;
-    let articles = await resp.json();
-    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    if (limit) articles = articles.slice(0, limit);
-
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = articles.map(art => `
-      <div class="card actu-card">
-        ${art.image ? `<div class="card-img" style="background-image:url(${art.image});background-size:cover;background-position:center;"></div>` : '<div class="card-img" style="background:#e0e8f0;display:flex;align-items:center;justify-content:center;"><span style="color:#7a8a9a;font-size:14px;">VAC Tennis</span></div>'}
-        <div class="card-body">
-          <span class="label">${art.categorie}</span>
-          <h3>${art.titre}</h3>
-          <span class="actu-date">${formatDate(art.date)}</span>
-          <p class="text-muted">${art.extrait}</p>
-        </div>
-      </div>
-    `).join('');
-  } catch (e) {
-    console.log('Actualités non disponibles');
-  }
-}
-
-function formatDate(dateStr) {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-}

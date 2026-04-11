@@ -11,7 +11,7 @@ public_folder: "/img/uploads"
 collections:
   - name: "actualites"
     label: "Actualités"
-    folder: "actualites"
+    folder: "site/actualites"
     create: true
     slug: "{{slug}}"
     fields:

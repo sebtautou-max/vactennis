@@ -4,7 +4,7 @@ async function loadActualites() {
   if (!container) return;
 
   try {
-    const response = await fetch('https://api.github.com/repos/sebtautou-max/vactennis/contents/actualites');
+    const response = await fetch('https://api.github.com/repos/sebtautou-max/vactennis/contents/site/actualites');
     const files = await response.json();
 
     const mdFiles = files.filter(f => f.name.endsWith('.md'));
