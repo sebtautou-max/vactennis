@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAC Tennis — Club de Tennis à Verneuil-sur-Seine</title>
+    <title>VAC Tennis</title>
     <meta name="description" content="VAC Tennis, club de tennis affilié FFT à Verneuil-sur-Seine. 6 courts, école de tennis, compétitions, entraînements 7j/7.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="apple-touch-icon" href="img/favicon-256.png">
 </head>
+<script src="js/actualites.js"></script>
 <body>
 
     <!-- Navigation -->
@@ -20,6 +23,14 @@
                     <img src="img/logo-vac.png" alt="VAC Tennis">
                     <span class="logo-text"><span>VAC</span> TENNIS</span>
                 </a>
+                <a href="https://www.verneuil78.fr/" target="_blank" rel="noopener" title="Ville de Verneuil">
+                    <div style="height: 32px; background: white; border-radius: 6px; padding: 4px; display: flex; align-items: center; justify-content: center;">
+                        <img src="img/logo-ville-verneuil.png" alt="Ville de Verneuil" style="height: 100%; width: auto;">
+                    </div>
+                </a>
+                <a href="https://www.vac78.fr" target="_blank" rel="noopener" title="VAC 78">
+                    <img src="img/logo-vac78.png" alt="VAC 78" style="height: 32px; width: auto;">
+                </a>
             </div>
             <button class="navbar-toggle" id="navbar-toggle" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -29,6 +40,14 @@
                 <a href="ecole-de-tennis.html">École de Tennis</a>
                 <a href="competitions.html">Compétitions</a>
                 <a href="inscriptions.html" class="btn btn-primary">S'INSCRIRE</a>
+                <div class="navbar-social">
+                    <a href="https://www.facebook.com/verneuilac.tennis/" target="_blank" rel="noopener" title="Facebook">
+                        <img src="img/logo-facebook.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/vac.tennis" target="_blank" rel="noopener" title="Instagram">
+                        <img src="img/logo-instagram.png" alt="Instagram">
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -37,7 +56,7 @@
     <section class="hero">
         <div class="container">
             <h1>Verneuil A.C. Tennis</h1>
-            <p>6 courts de qualité, une école de tennis dynamique et des compétitions pour tous les niveaux — depuis Verneuil-sur-Seine</p>
+            <p>6 courts de qualité, une école de tennis dynamique et des compétitions pour tous les niveaux</p>
             <div class="hero-actions">
                 <a href="#le-club" class="btn btn-primary">Découvrir le club</a>
                 <a href="inscriptions.html" class="btn btn-outline">S'inscrire</a>
@@ -53,7 +72,7 @@
                 <div class="stat-label">Courts</div>
             </div>
             <div class="stat">
-                <div class="stat-number">300+</div>
+                <div class="stat-number">450+</div>
                 <div class="stat-label">Adhérents</div>
             </div>
             <div class="stat">
@@ -88,11 +107,11 @@
                 <div>
                     <div class="info-box">
                         <p>VAC Tennis est une association loi 1901 affiliée à la Fédération Française de Tennis. Basée au Gymnase Pierre de Coubertin à Verneuil-sur-Seine, notre club propose 6 courts de qualité, une école de tennis dynamique et des compétitions pour tous les niveaux.</p>
-                        <p>Que vous soyez débutant, joueur de loisir ou compétiteur, VAC Tennis vous accueille dans un cadre convivial et sportif. Rejoignez-nous pour progresser, vous entraîner et partager votre passion du tennis.</p>
+                        <p>Que vous soyez débutant, joueur de loisir ou compétiteur, le VAC Tennis vous accueille dans un cadre convivial et sportif. Rejoignez-nous pour progresser, vous entraîner et partager votre passion du tennis.</p>
                     </div>
                 </div>
                 <div>
-                    <img src="img/courts-terre.png" alt="Courts de tennis VAC" style="border-radius:12px; width:100%; height:280px; object-fit:cover;">
+                    <img src="img/le-club.jpg" alt="Le Club VAC Tennis" style="border-radius:12px; width:100%; height:380px; object-fit:cover;">
                 </div>
             </div>
         </div>
@@ -110,14 +129,14 @@
                     <img src="img/courts-terre.png" alt="Courts extérieurs" class="card-img">
                     <div class="card-body">
                         <h3>6 Courts</h3>
-                        <p>4 courts extérieurs en Quick (éclairés) et 2 courts couverts pour jouer toute l'année, quelles que soient les conditions météo.</p>
+                        <p>4 courts extérieurs (2 en terre artificielle + 2 en béton poreux) et 2 courts couverts en résine pour jouer toute l'année, quelles que soient les conditions météo.</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/ecole-tennis.png" alt="Club House" class="card-img">
+                    <img src="img/club-house.jpg" alt="Club House" class="card-img">
                     <div class="card-body">
                         <h3>Club House</h3>
-                        <p>Un espace convivial pour se retrouver entre adhérents. Terrasse avec vue sur les courts, idéal pour suivre les matchs.</p>
+                        <p>Le club house est attenant aux terrains couverts. Il dispose d’un bar pour partager des moments de convivialité entre joueurs et d’un salon avec vue sur les courts. Le club met également à disposition des vestiaires, une douche et des toilettes.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -138,12 +157,11 @@
                 <div class="info-box">
                     <h3>Réservation de courts</h3>
                     <p>La réservation se fait via l'application <strong>TenUp</strong> de la FFT. Chaque adhérent peut réserver un court pour 1h, jusqu'à 7 jours à l'avance.</p>
-                    <a href="https://tenup.fft.fr/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:12px;">Réserver sur TenUp</a>
+                    <a href="https://tenup.fft.fr/club/57780260" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:12px;">Réserver sur TenUp</a>
                 </div>
                 <div class="info-box">
                     <h3>Accès & Contact</h3>
                     <p><strong>Gymnase Pierre de Coubertin</strong><br>Rue Jean Zay, 78480 Verneuil-sur-Seine</p>
-                    <p><strong>Téléphone :</strong> 09 67 10 48 29<br><strong>Email :</strong> <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a></p>
                 </div>
             </div>
         </div>
@@ -159,7 +177,7 @@
                 <div class="card-body" style="text-align:center; padding:40px;">
                     <h3>Rejoignez VAC Tennis</h3>
                     <p>Accédez à nos 6 courts, à l'école de tennis et aux compétitions.</p>
-                    <p style="margin:20px 0;"><strong style="font-size:1.4rem; color:#002e5d;">À partir de 142€/an</strong> pour les adultes</p>
+                    <p style="margin:20px 0;"><strong style="font-size:1.4rem; color:#002e5d;">à partir de 142€/an</strong> pour les enfants</p>
                     <a href="inscriptions.html" class="btn btn-primary">Consulter les tarifs complets</a>
                 </div>
             </div>
@@ -175,6 +193,33 @@
         </div>
     </section>
 
+    <!-- Sponsors Section -->
+    <section class="sponsors-section">
+        <div class="container">
+            <h3>Nos Partenaires et Sponsors</h3>
+            <div class="sponsors-logos">
+                <div style="text-align: center;">
+                    <img src="img/logo-fft.png" alt="Fédération Française de Tennis" style="height: 50px; object-fit: contain;">
+                </div>
+                <div style="text-align: center;">
+                    <img src="img/logo-ecosport.jpg" alt="Ecosport" style="height: 50px; object-fit: contain;">
+                </div>
+                <div style="text-align: center;">
+                    <img src="img/logo-babolat.png" alt="Babolat" style="height: 50px; object-fit: contain;">
+                </div>
+                <div style="text-align: center;">
+                    <img src="img/logo-credit-mutuel.png" alt="Crédit Mutuel" style="height: 50px; object-fit: contain;">
+                </div>
+                <div style="text-align: center;">
+                    <img src="img/logo-ville-verneuil.png" alt="Ville de Verneuil-sur-Seine" style="height: 50px; object-fit: contain;">
+                </div>
+                <div style="text-align: center;">
+                    <img src="img/logo-auchan.jpg" alt="Auchan" style="height: 50px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -187,7 +232,6 @@
                     <address>
                         Gymnase Pierre de Coubertin<br>
                         Rue Jean Zay, 78480 Verneuil-sur-Seine<br>
-                        <a href="tel:+33967104829">09 67 10 48 29</a><br>
                         <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a>
                     </address>
                 </div>
@@ -206,6 +250,17 @@
                         <a href="mentions-legales.html">Mentions légales</a>
                         <a href="politique-confidentialite.html">Politique de confidentialité</a>
                         <a href="docs/reglement-interieur.pdf" target="_blank" rel="noopener">Règlement intérieur</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Réseaux Sociaux</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/verneuilac.tennis/" target="_blank" rel="noopener" title="Facebook">
+                            <img src="img/logo-facebook.png" alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/vac.tennis" target="_blank" rel="noopener" title="Instagram">
+                            <img src="img/logo-instagram.png" alt="Instagram">
+                        </a>
                     </div>
                 </div>
             </div>

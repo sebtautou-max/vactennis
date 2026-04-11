@@ -11,7 +11,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px; line-height: 1.6;
   color: #1a2a3a; background: #f5f7fa;
 }
@@ -24,7 +24,7 @@ ul { list-style: none; }
 .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
 /* --- Typography --- */
-h1, h2, h3, h4 { font-family: 'Helvetica Neue', Helvetica, sans-serif; color: #002e5d; line-height: 1.2; font-weight: 700; }
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: #002e5d; line-height: 1.2; }
 h1 { font-size: 2.8rem; font-weight: 800; }
 h2 { font-size: 2rem; font-weight: 700; }
 h3 { font-size: 1.25rem; font-weight: 700; }
@@ -61,16 +61,22 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 0; padding-bottom: 0; height: 72px;
 }
-.navbar-logo a {
+.navbar-logo {
+  display: flex; align-items: center; gap: 32px;
+}
+.navbar-logo > a {
   display: flex; align-items: center; gap: 12px;
-  text-decoration: none;
+  text-decoration: none; flex-shrink: 0;
+}
+.navbar-logo > div {
+  flex-shrink: 0;
 }
 .navbar-logo img {
   height: 48px; width: auto;
 }
 .navbar-logo .logo-text {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 900; font-size: 20px; color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 20px; color: #fff;
   letter-spacing: 0.5px;
 }
 .navbar-logo .logo-text span { color: #5bb8ff; }
@@ -89,6 +95,22 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   padding: 10px 22px; font-weight: 700; font-size: 14px;
 }
 .navbar-links .btn-primary:hover { background: #3aa0f0; }
+
+
+.navbar-social {
+  display: flex; gap: 12px; align-items: center; margin-left: 24px;
+}
+.navbar-social a {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 !important; background: none !important;
+  border-radius: 0; transition: all .2s;
+}
+.navbar-social a img {
+  height: 28px !important; width: 28px !important; object-fit: contain;
+  padding: 0;
+}
+.navbar-social a:hover { background: none !important; transform: translateY(-2px); opacity: 0.8; }
+
 
 /* Hamburger */
 .navbar-toggle {
@@ -109,7 +131,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
    ============================================ */
 .hero {
   background: linear-gradient(135deg, #002e5d 0%, #004a8f 100%);
-  padding: 80px 24px; text-align: center; color: #fff;
+  padding: 50px 24px; text-align: center; color: #fff;
   position: relative; overflow: hidden;
 }
 .hero::before {
@@ -145,8 +167,8 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 }
 .stat { padding: 24px 16px; text-align: center; }
 .stat-number {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 2.2rem; font-weight: 900; color: #002e5d;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem; font-weight: 800; color: #002e5d;
 }
 .stat-label {
   font-size: 13px; color: #7a8a9a;
@@ -190,8 +212,10 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 
 /* Actu card */
 .actu-card { text-decoration: none; color: inherit; display: block; }
-.actu-card .card-img { height: 160px; }
+.actu-card .card-img { height: 280px; min-height: 200px; flex-shrink: 0; }
 .actu-date { font-size: 13px; color: #7a8a9a; display: block; margin: 4px 0 8px; }
+#actu-grid .card { display: flex; flex-direction: column; }
+#actu-grid .card .card-body { flex: 1; }
 
 /* ============================================
    GRIDS
@@ -227,7 +251,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 }
 .pricing-table th {
   background: #002e5d; color: #fff; padding: 14px 16px;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700;
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
   font-size: 14px; text-align: center;
 }
 .pricing-table th:first-child { text-align: left; }
@@ -289,13 +313,13 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   background: #0a1e36; color: #9ab0c8; padding: 48px 0 24px;
 }
 .footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px; margin-bottom: 32px;
 }
 .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .footer-brand img { height: 40px; }
 .footer-brand span {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: 900;
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
   font-size: 18px; color: #fff;
 }
 .footer h4 {
@@ -311,6 +335,45 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 24px; text-align: center; font-size: 13px; color: #5a7a9a;
 }
+
+/* ============================================
+   SPONSORS & SOCIAL MEDIA
+   ============================================ */
+.sponsors-section {
+  background: #f5f7fa; border-top: 1px solid #dce4ec; border-bottom: 1px solid #dce4ec;
+  padding: 24px 0; margin-top: 32px;
+}
+.sponsors-section .container { text-align: center; }
+.sponsors-section h3 {
+  font-size: 0.95rem; font-weight: 600; color: #5a7a9a;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;
+}
+.sponsors-logos {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px; align-items: center; justify-items: center;
+}
+.sponsors-logos img {
+  height: 40px; width: auto; opacity: 0.7; transition: opacity .2s;
+  filter: grayscale(30%);
+}
+.sponsors-logos img:hover { opacity: 1; filter: grayscale(0%); }
+.sponsors-logos span {
+  font-size: 12px; color: #7a8a9a; font-weight: 500;
+  display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.social-links {
+  display: flex; gap: 16px; justify-content: flex-start; margin-top: 12px;
+}
+.social-links a {
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.social-links a img {
+  height: 28px !important; width: 28px !important; object-fit: contain;
+  padding: 0;
+}
+.social-links a:hover { transform: translateY(-2px); opacity: 0.8; }
 
 /* ============================================
    LEGAL PAGES
@@ -340,6 +403,10 @@ h4 { font-size: 1.1rem; font-weight: 600; }
     box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   }
   .navbar-links.open { display: flex; }
+
+  /* Director card responsive */
+  .director-content { grid-template-columns: 1fr !important; }
+  .director-content img { height: auto !important; max-height: 280px; }
   .navbar-links a { padding: 12px 0; font-size: 16px; }
   .navbar-links .btn-primary { text-align: center; margin-top: 8px; }
 
