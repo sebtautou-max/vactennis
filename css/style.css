@@ -61,9 +61,15 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 0; padding-bottom: 0; height: 72px;
 }
-.navbar-logo a {
+.navbar-logo {
+  display: flex; align-items: center; gap: 32px;
+}
+.navbar-logo > a {
   display: flex; align-items: center; gap: 12px;
-  text-decoration: none;
+  text-decoration: none; flex-shrink: 0;
+}
+.navbar-logo > div {
+  flex-shrink: 0;
 }
 .navbar-logo img {
   height: 48px; width: auto;
@@ -90,6 +96,22 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 }
 .navbar-links .btn-primary:hover { background: #3aa0f0; }
 
+
+.navbar-social {
+  display: flex; gap: 12px; align-items: center; margin-left: 24px;
+}
+.navbar-social a {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 !important; background: none !important;
+  border-radius: 0; transition: all .2s;
+}
+.navbar-social a img {
+  height: 28px !important; width: 28px !important; object-fit: contain;
+  padding: 0;
+}
+.navbar-social a:hover { background: none !important; transform: translateY(-2px); opacity: 0.8; }
+
+
 /* Hamburger */
 .navbar-toggle {
   display: none; background: none; border: none; cursor: pointer;
@@ -109,7 +131,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
    ============================================ */
 .hero {
   background: linear-gradient(135deg, #002e5d 0%, #004a8f 100%);
-  padding: 80px 24px; text-align: center; color: #fff;
+  padding: 50px 24px; text-align: center; color: #fff;
   position: relative; overflow: hidden;
 }
 .hero::before {
@@ -291,7 +313,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   background: #0a1e36; color: #9ab0c8; padding: 48px 0 24px;
 }
 .footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px; margin-bottom: 32px;
 }
 .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
@@ -313,6 +335,45 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 24px; text-align: center; font-size: 13px; color: #5a7a9a;
 }
+
+/* ============================================
+   SPONSORS & SOCIAL MEDIA
+   ============================================ */
+.sponsors-section {
+  background: #f5f7fa; border-top: 1px solid #dce4ec; border-bottom: 1px solid #dce4ec;
+  padding: 24px 0; margin-top: 32px;
+}
+.sponsors-section .container { text-align: center; }
+.sponsors-section h3 {
+  font-size: 0.95rem; font-weight: 600; color: #5a7a9a;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;
+}
+.sponsors-logos {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px; align-items: center; justify-items: center;
+}
+.sponsors-logos img {
+  height: 40px; width: auto; opacity: 0.7; transition: opacity .2s;
+  filter: grayscale(30%);
+}
+.sponsors-logos img:hover { opacity: 1; filter: grayscale(0%); }
+.sponsors-logos span {
+  font-size: 12px; color: #7a8a9a; font-weight: 500;
+  display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.social-links {
+  display: flex; gap: 16px; justify-content: flex-start; margin-top: 12px;
+}
+.social-links a {
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.social-links a img {
+  height: 28px !important; width: 28px !important; object-fit: contain;
+  padding: 0;
+}
+.social-links a:hover { transform: translateY(-2px); opacity: 0.8; }
 
 /* ============================================
    LEGAL PAGES
@@ -342,6 +403,10 @@ h4 { font-size: 1.1rem; font-weight: 600; }
     box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   }
   .navbar-links.open { display: flex; }
+
+  /* Director card responsive */
+  .director-content { grid-template-columns: 1fr !important; }
+  .director-content img { height: auto !important; max-height: 280px; }
   .navbar-links a { padding: 12px 0; font-size: 16px; }
   .navbar-links .btn-primary { text-align: center; margin-top: 8px; }
 
