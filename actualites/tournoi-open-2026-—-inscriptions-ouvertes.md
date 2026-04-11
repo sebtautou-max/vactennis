@@ -1,7 +1,7 @@
 ---
-title: Tournoi OPEN 2026 — Inscriptions ouvertes
-category: Tournoi
-date: 2026-04-18T00:00:00.000Z
-image: /img/uploads/open2026.jpg
+title: Soirée Ados !
+category: Club
+date: 2026-04-11T18:00:00.000Z
+image: /img/uploads/soiree-ados.png
 ---
-Le tournoi OPEN annuel du VAC Tennis se tiendra du 18 avril au 10 mai 2026. 5 épreuves ouvertes à tous les joueurs.
+Tennis, pizzas 🍕, jeux 🎲 et musique 🎶… Tout est réuni pour passer une super soirée 💥  2 créneaux selon l’âge. On vous attend nombreux 🔥
