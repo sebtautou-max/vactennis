@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAC Tennis — Comparatif de styles</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;800&family=Playfair+Display:wght@600;700&family=Lato:wght@400;700&family=Plus+Jakarta+Sans:wght@500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #111;
+    color: #fff;
+    padding: 40px 20px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .page-subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 60px;
+  }
+
+  .mockup-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .mockup-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .mockup-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mockup-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .mockup-label-text h2 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+
+  .mockup-label-text p {
+    font-size: 14px;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  .mockup-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  /* ============================================ */
+  /* STYLE 1 : SPORTIF & DYNAMIQUE               */
+  /* ============================================ */
+  .s1 { background: #0A0A0A; }
+  .s1 .mockup-number { background: #CCE636; color: #0A0A0A; }
+
+  .s1-site { font-family: 'Montserrat', sans-serif; }
+
+  .s1-nav {
+    background: #0D1A0F;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #1a3a1e;
+  }
+  .s1-nav .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: #CCE636; }
+  .s1-nav .logo span { color: #fff; }
+  .s1-nav ul { list-style: none; display: flex; gap: 28px; }
+  .s1-nav ul li { font-family: 'Inter', sans-serif; font-size: 14px; color: #aaa; font-weight: 500; }
+  .s1-nav ul li.active { color: #CCE636; }
+  .s1-nav .cta-btn {
+    background: #CCE636;
+    color: #0A0A0A;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .s1-hero {
+    background: linear-gradient(135deg, #0D1A0F 0%, #1a3a1e 50%, #2D7A3A 100%);
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s1-hero::after {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 300px; height: 300px;
+    background: #CCE636;
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .s1-hero h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    max-width: 600px;
+  }
+  .s1-hero h1 .accent { color: #CCE636; }
+  .s1-hero p {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    color: #b0c9b3;
+    margin-top: 20px;
+    max-width: 480px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .s1-hero .btns { display: flex; gap: 14px; margin-top: 32px; }
+  .s1-hero .btn-primary {
+    background: #CCE636;
+    color: #0A0A0A;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .s1-hero .btn-secondary {
+    border: 2px solid #CCE636;
+    color: #CCE636;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .s1-stats {
+    display: flex;
+    gap: 0;
+    background: #0D1A0F;
+    border-top: 2px solid #1a3a1e;
+  }
+  .s1-stats .stat {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+    border-right: 1px solid #1a3a1e;
+  }
+  .s1-stats .stat:last-child { border-right: none; }
+  .s1-stats .stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: #CCE636;
+  }
+  .s1-stats .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #7a9a7e;
+    margin-top: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ============================================ */
+  /* STYLE 2 : ELEGANT & SOBRE                   */
+  /* ============================================ */
+  .s2 { background: #0A0A0A; }
+  .s2 .mockup-number { background: #C9A84C; color: #0A0A0A; }
+
+  .s2-site { font-family: 'Lato', sans-serif; }
+
+  .s2-nav {
+    background: #0E1424;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e2a4a;
+  }
+  .s2-nav .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #C9A84C;
+  }
+  .s2-nav .logo span { color: #fff; font-weight: 600; }
+  .s2-nav ul { list-style: none; display: flex; gap: 32px; }
+  .s2-nav ul li { font-size: 14px; color: #8899bb; font-weight: 400; letter-spacing: 0.5px; }
+  .s2-nav ul li.active { color: #C9A84C; }
+  .s2-nav .cta-btn {
+    border: 1px solid #C9A84C;
+    color: #C9A84C;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s2-hero {
+    background: linear-gradient(160deg, #0E1424 0%, #1B2A4A 60%, #243660 100%);
+    padding: 100px 40px 80px;
+    position: relative;
+    text-align: center;
+  }
+  .s2-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  }
+  .s2-hero .overline {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .s2-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .s2-hero h1 .accent { color: #C9A84C; }
+  .s2-hero p {
+    font-size: 17px;
+    color: #8899bb;
+    margin-top: 24px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+  .s2-hero .btns { display: flex; gap: 16px; margin-top: 36px; justify-content: center; }
+  .s2-hero .btn-primary {
+    background: #C9A84C;
+    color: #0E1424;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .s2-hero .btn-secondary {
+    border: 1px solid #4a5a7a;
+    color: #aabbdd;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s2-stats {
+    display: flex;
+    background: #0E1424;
+    border-top: 1px solid #1e2a4a;
+  }
+  .s2-stats .stat {
+    flex: 1;
+    padding: 32px;
+    text-align: center;
+    border-right: 1px solid #1e2a4a;
+  }
+  .s2-stats .stat:last-child { border-right: none; }
+  .s2-stats .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #C9A84C;
+  }
+  .s2-stats .stat-label {
+    font-size: 12px;
+    color: #6678aa;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+  }
+
+  /* ============================================ */
+  /* STYLE 3 : MODERNE & EPURE                   */
+  /* ============================================ */
+  .s3 { background: #0A0A0A; }
+  .s3 .mockup-number { background: #34A853; color: #fff; }
+
+  .s3-site { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  .s3-nav {
+    background: #FFFFFF;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  .s3-nav .logo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1a1a1a;
+  }
+  .s3-nav .logo span { color: #34A853; }
+  .s3-nav ul { list-style: none; display: flex; gap: 28px; }
+  .s3-nav ul li { font-size: 14px; color: #888; font-weight: 500; }
+  .s3-nav ul li.active { color: #1a1a1a; }
+  .s3-nav .cta-btn {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .s3-hero {
+    background: #FFFFFF;
+    padding: 80px 40px 60px;
+    text-align: center;
+  }
+  .s3-hero .badge {
+    display: inline-block;
+    background: #E8F5E9;
+    color: #34A853;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .s3-hero h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: #1a1a1a;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .s3-hero h1 .accent { color: #34A853; }
+  .s3-hero p {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    color: #888;
+    margin-top: 20px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .s3-hero .btns { display: flex; gap: 12px; margin-top: 32px; justify-content: center; }
+  .s3-hero .btn-primary {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .s3-hero .btn-secondary {
+    background: #F5F5F5;
+    color: #1a1a1a;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .s3-stats {
+    display: flex;
+    background: #F9F9F9;
+  }
+  .s3-stats .stat {
+    flex: 1;
+    padding: 32px;
+    text-align: center;
+  }
+  .s3-stats .stat-num {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .s3-stats .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* ============================================ */
+  /* PALETTE SWATCHES                             */
+  /* ============================================ */
+  .palette {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 0 40px;
+  }
+  .swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+  .palette-label {
+    font-size: 11px;
+    color: #666;
+    margin-top: 6px;
+    padding: 0 40px;
+  }
+
+  @media (max-width: 768px) {
+    .s1-hero h1, .s2-hero h1, .s3-hero h1 { font-size: 32px; }
+    .s1-nav ul, .s2-nav ul, .s3-nav ul { display: none; }
+    .s1-stats, .s2-stats, .s3-stats { flex-wrap: wrap; }
+    .s1-stats .stat, .s2-stats .stat, .s3-stats .stat { min-width: 50%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">VAC Tennis — Choix du style visuel</div>
+<div class="page-subtitle">3 directions graphiques pour le nouveau site</div>
+
+<div class="mockup-container">
+
+  <!-- STYLE 1 -->
+  <div class="mockup-section s1">
+    <div class="mockup-label">
+      <div class="mockup-number">1</div>
+      <div class="mockup-label-text">
+        <h2>Sportif & Dynamique</h2>
+        <p>Vert tennis + jaune balle, Montserrat bold, ambiance club actif et energique</p>
+      </div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#0D1A0F"></div>
+      <div class="swatch" style="background:#2D7A3A"></div>
+      <div class="swatch" style="background:#CCE636"></div>
+      <div class="swatch" style="background:#FFFFFF"></div>
+      <div class="swatch" style="background:#0A0A0A"></div>
+    </div>
+    <div class="palette-label">Vert profond &bull; Vert tennis &bull; Jaune balle &bull; Blanc &bull; Noir</div>
+    <div class="mockup-frame">
+      <div class="s1-site">
+        <nav class="s1-nav">
+          <div class="logo">VAC <span>TENNIS</span></div>
+          <ul>
+            <li class="active">Le Club</li>
+            <li>Ecole de Tennis</li>
+            <li>Competitions</li>
+            <li>Actualites</li>
+          </ul>
+          <div class="cta-btn">S'INSCRIRE</div>
+        </nav>
+        <div class="s1-hero">
+          <h1>Votre club de<br>tennis a <span class="accent">Verneuil</span></h1>
+          <p>6 courts, une equipe de passionnes et un esprit club unique. Rejoignez le VAC Tennis pour progresser, vous amuser et vibrer.</p>
+          <div class="btns">
+            <div class="btn-primary">Decouvrir le club</div>
+            <div class="btn-secondary">S'inscrire</div>
+          </div>
+        </div>
+        <div class="s1-stats">
+          <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Courts</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">8h-22h</div>
+            <div class="stat-label">Ouvert 7j/7</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">11</div>
+            <div class="stat-label">Equipes</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">FFT</div>
+            <div class="stat-label">Agree</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STYLE 2 -->
+  <div class="mockup-section s2">
+    <div class="mockup-label">
+      <div class="mockup-number">2</div>
+      <div class="mockup-label-text">
+        <h2>Elegant & Sobre</h2>
+        <p>Bleu marine + or, Playfair Display serif, ambiance club premium et traditionnel</p>
+      </div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#0E1424"></div>
+      <div class="swatch" style="background:#1B2A4A"></div>
+      <div class="swatch" style="background:#C9A84C"></div>
+      <div class="swatch" style="background:#FFFFFF"></div>
+      <div class="swatch" style="background:#8899BB"></div>
+    </div>
+    <div class="palette-label">Bleu nuit &bull; Bleu marine &bull; Or &bull; Blanc &bull; Gris bleu</div>
+    <div class="mockup-frame">
+      <div class="s2-site">
+        <nav class="s2-nav">
+          <div class="logo"><span>VAC</span> Tennis</div>
+          <ul>
+            <li class="active">Le Club</li>
+            <li>Ecole de Tennis</li>
+            <li>Competitions</li>
+            <li>Actualites</li>
+          </ul>
+          <div class="cta-btn">Inscription</div>
+        </nav>
+        <div class="s2-hero">
+          <div class="overline">Verneuil-sur-Seine &bull; Depuis 19XX</div>
+          <h1>L'excellence du tennis<br>au coeur des <span class="accent">Yvelines</span></h1>
+          <p>Un cadre exceptionnel, 6 courts et une equipe pedagogique dediee pour vous accompagner dans votre progression.</p>
+          <div class="btns">
+            <div class="btn-primary">Decouvrir le club</div>
+            <div class="btn-secondary">Nous contacter</div>
+          </div>
+        </div>
+        <div class="s2-stats">
+          <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Courts</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">8h-22h</div>
+            <div class="stat-label">7 jours sur 7</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">11</div>
+            <div class="stat-label">Equipes</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">FFT</div>
+            <div class="stat-label">Agree</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STYLE 3 -->
+  <div class="mockup-section s3">
+    <div class="mockup-label">
+      <div class="mockup-number">3</div>
+      <div class="mockup-label-text">
+        <h2>Moderne & Epure</h2>
+        <p>Fond blanc, accent vert, Plus Jakarta Sans, design minimaliste et aere</p>
+      </div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#FFFFFF; border-color: #ddd"></div>
+      <div class="swatch" style="background:#F5F5F5; border-color: #ddd"></div>
+      <div class="swatch" style="background:#34A853"></div>
+      <div class="swatch" style="background:#1A1A1A"></div>
+      <div class="swatch" style="background:#888888"></div>
+    </div>
+    <div class="palette-label">Blanc &bull; Gris clair &bull; Vert accent &bull; Noir &bull; Gris texte</div>
+    <div class="mockup-frame">
+      <div class="s3-site">
+        <nav class="s3-nav">
+          <div class="logo">vac<span>tennis</span></div>
+          <ul>
+            <li class="active">Le Club</li>
+            <li>Ecole de Tennis</li>
+            <li>Competitions</li>
+            <li>Actualites</li>
+          </ul>
+          <div class="cta-btn">S'inscrire</div>
+        </nav>
+        <div class="s3-hero">
+          <div class="badge">Club de Tennis &bull; Verneuil-sur-Seine</div>
+          <h1>Jouez, progressez,<br>vibrez au <span class="accent">VAC Tennis</span></h1>
+          <p>6 courts, des enseignants brevetes d'Etat et un esprit club chaleureux. Pour tous les ages et tous les niveaux.</p>
+          <div class="btns">
+            <div class="btn-primary">Decouvrir le club</div>
+            <div class="btn-secondary">Voir les tarifs</div>
+          </div>
+        </div>
+        <div class="s3-stats">
+          <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Courts de tennis</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">8h-22h</div>
+            <div class="stat-label">Ouvert 7j/7</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">11</div>
+            <div class="stat-label">Equipes engagees</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">FFT</div>
+            <div class="stat-label">Agree</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center; margin-top:80px; padding-bottom:60px; color:#666; font-size:14px;">
+  Choisis ton style prefere et on construit le site ensemble dans Framer.
+</div>
+
+</body>
+</html>

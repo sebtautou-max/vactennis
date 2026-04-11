@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "tournoi-open-2026",
+    "titre": "Tournoi OPEN 2026 — Inscriptions ouvertes",
+    "date": "2026-04-02",
+    "categorie": "Tournoi",
+    "image": "img/open2026.jpg",
+    "extrait": "Le tournoi OPEN annuel du VAC Tennis se tiendra du 18 avril au 10 mai 2026. 5 épreuves ouvertes à tous les joueurs."
+  },
+  {
+    "slug": "stages-paques-2026",
+    "titre": "Stages de Pâques — Places disponibles",
+    "date": "2026-03-15",
+    "categorie": "Stage",
+    "image": "img/stages-hiver.png",
+    "extrait": "Les stages de vacances de Pâques sont ouverts aux 4-18 ans, tous niveaux. Formules 2h ou 4h par jour."
+  },
+  {
+    "slug": "championnats-printemps-2026",
+    "titre": "Championnats de printemps — C'est parti !",
+    "date": "2026-03-01",
+    "categorie": "Compétition",
+    "image": "img/competitions-equipes.png",
+    "extrait": "Les championnats par équipes de printemps démarrent. 11 équipes VAC Tennis sont engagées cette saison !"
+  }
+]
