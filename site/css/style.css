@@ -376,6 +376,42 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 .social-links a:hover { transform: translateY(-2px); opacity: 0.8; }
 
 /* ============================================
+   BUREAU BANNER
+   ============================================ */
+.bureau-banner {
+  background: linear-gradient(135deg, #d4e9f7 0%, #e8f4ff 100%);
+  border-radius: 12px;
+  padding: 24px 32px;
+  margin-top: 32px;
+}
+.bureau-banner h3 {
+  color: #002e5d; font-family: 'Montserrat', sans-serif;
+  font-size: 1rem; margin-bottom: 2px; text-align: center;
+}
+.bureau-banner .bureau-subtitle {
+  color: #5a7a9a; font-size: 0.8rem;
+  text-align: center; margin-bottom: 18px;
+}
+.bureau-members {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 32px;
+}
+.bureau-member { text-align: center; min-width: 100px; }
+.bureau-name { font-weight: 600; font-size: 12px; color: #002e5d; margin-bottom: 1px; }
+.bureau-role { font-size: 11px; color: #2a7ab5; font-weight: 500; }
+.bureau-photo {
+  width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
+  border: 2px solid #5bb8ff; margin: 0 auto 6px; display: block;
+}
+@media (max-width: 768px) {
+  .bureau-banner { padding: 20px 16px; }
+  .bureau-members {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px 8px; justify-items: center;
+  }
+  .bureau-member { min-width: 0; width: 100%; }
+}
+
+/* ============================================
    LEGAL PAGES
    ============================================ */
 .legal-content h2 { font-size: 1.5rem; margin: 32px 0 12px; }
@@ -396,6 +432,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
 @media (max-width: 768px) {
   /* Mobile nav */
   .navbar-toggle { display: block; }
+  .navbar-logo > a:last-child { display: none; }
   .navbar-links {
     display: none; position: absolute; top: 72px; left: 0; right: 0;
     background: #002e5d; flex-direction: column; padding: 16px 24px;
@@ -409,6 +446,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   .director-content img { height: auto !important; max-height: 280px; }
   .navbar-links a { padding: 12px 0; font-size: 16px; }
   .navbar-links .btn-primary { text-align: center; margin-top: 8px; }
+  .navbar-social { justify-content: center; margin-left: 0; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
 
   .hero { padding: 56px 24px; }
   .hero h1 { font-size: 2rem; }
@@ -433,4 +471,8 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   .stats-bar .container { grid-template-columns: repeat(2, 1fr); }
   .stat { padding: 16px 8px; }
   .stat-number { font-size: 1.8rem; }
+  .bureau-members { grid-template-columns: repeat(3, 1fr); gap: 14px 4px; }
+  .bureau-photo { width: 44px; height: 44px; }
+  .bureau-name { font-size: 11px; }
+  .bureau-role { font-size: 10px; }
 }
