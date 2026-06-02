@@ -220,6 +220,30 @@
 
     <!-- Procédure d'Inscription -->
     <section class="section section-alt" id="procedure-inscription">
+        <style>
+            #procedure-inscription .step-card { position: relative; }
+            #procedure-inscription .step-card:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                right: -26px;
+                top: 50%;
+                width: 14px;
+                height: 14px;
+                transform: translateY(-50%);
+                background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23002e5d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>") no-repeat center;
+                background-size: contain;
+                opacity: 0.35;
+                pointer-events: none;
+            }
+            @media (max-width: 620px) {
+                #procedure-inscription .step-card:not(:last-child)::after {
+                    right: 50%;
+                    top: auto;
+                    bottom: -22px;
+                    transform: translateX(50%) rotate(90deg);
+                }
+            }
+        </style>
         <div class="container">
             <div class="section-header">
                 <h2>Procédure d'Inscription pas à pas</h2>
@@ -238,9 +262,9 @@
             </div>
 
             <!-- Étapes -->
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:20px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:32px 40px;">
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">1</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Créer un compte Tenup</h4>
@@ -248,7 +272,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;">Sur <a href="https://tenup.fft.fr/" target="_blank" rel="noopener">tenup.fft.fr</a>, cliquez sur « Connexion / Inscription » puis « Créer un compte ». Renseignez les informations <strong>du joueur</strong> (vous ou votre enfant) — elles serviront à créer la licence FFT.</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">2</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Se connecter à Tenup</h4>
@@ -256,7 +280,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;">Connectez-vous avec votre identifiant et votre mot de passe sur tenup.fft.fr. Mot de passe oublié ? Cliquez sur « Réinitialiser votre mot de passe ».</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">3</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Accéder aux offres VAC Tennis</h4>
@@ -264,7 +288,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;"><strong>Nouvel adhérent :</strong> Rechercher un club → saisir le code postal <strong>78480</strong>, rayon 1 km → cliquer sur « Verneuil A.C. » puis sur l'onglet « Offres ».<br><strong>Réinscription :</strong> depuis l'accueil Tenup, cliquer sur « Les offres de mon club ».</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">4</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Choisir votre offre d'adhésion</h4>
@@ -272,7 +296,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;">Sélectionnez l'offre correspondant à votre tranche d'âge (4-6 / 7-18 / 19-25 / 26 ans+) et à votre statut résident ou extérieur. La licence FFT est ajoutée automatiquement à l'étape suivante.</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">5</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Indiquer vos disponibilités</h4>
@@ -280,7 +304,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;">Dans la zone « Ajouter un commentaire » de l'offre, <strong>indiquez impérativement vos créneaux préférés</strong> pour les cours de tennis (ex. : mardi 18h-20h, samedi 10h-12h). Sans cette info, le club devra vous relancer par mail.</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">6</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Valider votre pré-inscription</h4>
@@ -288,7 +312,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;">Confirmez votre panier pour transmettre la pré-inscription au club. <strong>Aucun paiement n'est requis à ce stade.</strong> Vous recevez un email de confirmation (mai-juin).</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">7</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Attendre la validation du club</h4>
@@ -296,7 +320,7 @@
                     <p style="margin:0; color:#334155; font-size:14px; line-height:1.6;">Le club valide votre pré-inscription en septembre. Vous recevez alors un second email vous invitant à procéder au paiement.</p>
                 </div>
 
-                <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div class="step-card" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
                         <span style="background:#002e5d; color:#fff; min-width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">8</span>
                         <h4 style="margin:0; color:#002e5d; font-size:16px;">Procéder au paiement</h4>
