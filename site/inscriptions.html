@@ -70,6 +70,13 @@
                 box-shadow: 0 6px 16px rgba(255, 102, 51, 0.35);
             }
             .btn-procedure:active { transform: translateY(0); }
+            .btn-helloasso { transition: all .2s ease; }
+            .btn-helloasso:hover {
+                background: #001f3f !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0, 46, 93, 0.35);
+            }
+            .btn-helloasso:active { transform: translateY(0); }
         </style>
         <div class="container">
             <div style="display:flex; align-items:flex-start; gap:14px; background:#fff4ec; border-left:4px solid #FF6633; border-radius:10px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
@@ -215,11 +222,28 @@
                     <div class="advantage-icon">+</div>
                     <div class="advantage-text">
                         <strong>Aides acceptées</strong>
-                        <span style="line-height:1.7;">
-                            Pass+, Pass Sport, Labaz, chèques-vacances, coupons sports ANCV.<br>
-                            <strong style="color:#002e5d;">Transmission via notre boutique HelloAsso</strong> — <a href="https://www.helloasso.com/associations/verneuil-athletique-club-section-tennis/boutiques/inscription-2026-2027" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">helloasso.com/.../inscription-2026-2027</a>. À ne pas envoyer par email.<br>
-                            <strong style="color:#002e5d;">Avant le 1<sup>er</sup> paiement</strong> : déduit du montant. <strong style="color:#002e5d;">Après</strong> : remboursé sur CB.
+                        <span style="line-height:1.7; display:block;">
+                            Le club accepte plusieurs dispositifs d'aide à la pratique sportive : <strong style="color:#002e5d;">Pass+</strong>, <strong style="color:#002e5d;">Pass Sport</strong>, <strong style="color:#002e5d;">Labaz</strong>, <strong style="color:#002e5d;">chèques-vacances</strong> et <strong style="color:#002e5d;">coupons sports ANCV</strong>.
+                            <br><br>
+                            Pour faciliter le traitement et garantir leur prise en compte, les justificatifs sont à transmettre <strong style="color:#002e5d;">exclusivement via notre boutique HelloAsso</strong>. <strong>Merci de ne pas les envoyer par email</strong>, ils ne pourraient pas être traités.
+                            <br><br>
+                            <strong style="color:#002e5d;">Quand transmettre votre pass ?</strong>
+                            <br>• <strong style="color:#002e5d;">Avant votre 1<sup>er</sup> paiement Tenup</strong> : le montant est directement déduit de votre cotisation.
+                            <br>• <strong style="color:#002e5d;">Après votre 1<sup>er</sup> paiement</strong> : le montant vous est remboursé sur votre carte bancaire.
                         </span>
+                        <div style="margin-top:16px;">
+                            <a href="https://www.helloasso.com/associations/verneuil-athletique-club-section-tennis/boutiques/inscription-2026-2027" target="_blank" rel="noopener" class="btn-helloasso" style="display:inline-flex; align-items:center; gap:10px; background:#002e5d; color:#fff; padding:11px 20px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                Transmettre mon pass sur HelloAsso
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="9 18 15 12 9 6"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
