@@ -274,6 +274,89 @@
     .tile-title { font-size: 0.86rem; font-weight: 700; color: var(--text); font-family: 'Montserrat', sans-serif; }
     .tile-desc  { font-size: 0.71rem; color: var(--text-muted); line-height: 1.4; }
 
+    /* ── SECTIONS CONDITIONNELLES ── */
+    .conditional-block {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.38s ease, opacity 0.28s ease, margin-top 0.28s ease;
+      margin-top: 0;
+    }
+    .conditional-block.visible {
+      max-height: 800px;
+      opacity: 1;
+      margin-top: 0;
+    }
+
+    /* Séparateur de section */
+    .section-sep {
+      display: flex; align-items: center; gap: 0.7rem;
+      margin: 0.2rem 0 1.1rem;
+    }
+    .section-sep::before,
+    .section-sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section-sep-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.09em;
+      white-space: nowrap;
+    }
+
+    /* Couleur accent Tennis */
+    .section-tennis .section-sep-label { color: #0d47a1; }
+    .section-tennis .field-label       { color: #0d47a1; }
+
+    /* Couleur accent Barbecue */
+    .section-bbq .section-sep-label { color: #bf360c; }
+    .section-bbq .field-label       { color: #bf360c; }
+
+    /* ── LISTE JOUEURS ── */
+    .players-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .player-row {
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .player-row input[type="text"] {
+      flex: 1;
+    }
+    .player-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--text-muted);
+      min-width: 18px; text-align: right;
+    }
+    .btn-remove-player {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--text-muted);
+      font-size: 1rem; font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .btn-remove-player:hover {
+      border-color: var(--vac-red);
+      color: var(--vac-red);
+      background: #fff0f0;
+    }
+    .btn-add-player {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 0.5rem;
+      padding: 0.42rem 0.9rem;
+      background: #eef5fd;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--vac-blue);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-add-player:hover { background: #ddeefa; border-color: var(--vac-blue); }
+
     /* ── COUNTERS ── */
     .counters-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
 
@@ -536,12 +619,6 @@
   <div class="card-body" id="formBody">
     <form id="mainForm" novalidate>
 
-      <!-- Honeypot anti-spam (invisible aux humains, rempli par les bots) -->
-      <div style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; overflow:hidden;" aria-hidden="true">
-        <label for="website-url">Site web (ne pas remplir)</label>
-        <input type="text" id="website-url" name="website-url" tabindex="-1" autocomplete="off">
-      </div>
-
       <!-- Nom / Prénom -->
       <div class="col-2">
         <div class="form-group">
@@ -560,7 +637,7 @@
         <input type="email" id="email" name="email" placeholder="votre@email.fr" autocomplete="email" required>
       </div>
 
-      <!-- Activités cumulatives — BUG FIX 3 : pas d'onclick inline sur le label -->
+      <!-- ── Activités cumulatives ── -->
       <div class="form-group">
         <label class="field-label">
           Je participe à <span class="required">*</span>
@@ -584,49 +661,76 @@
         </div>
       </div>
 
-      <!-- Compteurs adultes / enfants -->
-      <div class="form-group">
-        <label class="field-label">Nombre de participant·es <span class="required">*</span></label>
-        <span class="field-hint">Vous compris·e</span>
-        <div class="counters-row">
-          <div class="counter-box" id="boxAdults">
-            <div>
-              <div class="counter-label">👤 Adultes</div>
-              <div class="counter-sub">18 ans et +</div>
-            </div>
-            <div class="counter-controls">
-              <button type="button" class="counter-btn" id="btnAdultsMinus" aria-label="Diminuer adultes">−</button>
-              <span class="counter-val" id="valAdults" aria-live="polite">0</span>
-              <button type="button" class="counter-btn" id="btnAdultsPlus"  aria-label="Augmenter adultes">+</button>
-            </div>
-          </div>
-          <div class="counter-box" id="boxChildren">
-            <div>
-              <div class="counter-label">🧒 Enfants</div>
-              <div class="counter-sub">Moins de 18 ans</div>
-            </div>
-            <div class="counter-controls">
-              <button type="button" class="counter-btn" id="btnChildrenMinus" aria-label="Diminuer enfants">−</button>
-              <span class="counter-val" id="valChildren" aria-live="polite">0</span>
-              <button type="button" class="counter-btn" id="btnChildrenPlus"  aria-label="Augmenter enfants">+</button>
+      <!-- ══════════════════════════════════════════
+           SECTION TENNIS — affichée si tile Tennis cochée
+           ══════════════════════════════════════════ -->
+      <div class="conditional-block section-tennis" id="sectionTennis">
+        <div class="section-sep"><span class="section-sep-label">🎾 Participants au tennis</span></div>
+
+        <div class="form-group">
+          <label class="field-label" id="labelPlayers">Nom·s des joueur·ses <span class="required">*</span></label>
+          <span class="field-hint">Un·e joueur·se par ligne — indiquez le prénom et le nom</span>
+          <div class="players-list" id="playersList">
+            <div class="player-row">
+              <span class="player-num">1.</span>
+              <input type="text" class="player-input" placeholder="Prénom Nom" autocomplete="off">
             </div>
           </div>
+          <button type="button" class="btn-add-player" id="btnAddPlayer">
+            + Ajouter un·e joueur·se
+          </button>
         </div>
       </div>
 
-      <!-- Apport — BUG FIX 6 : pas d'onclick inline -->
-      <div class="form-group">
-        <label class="field-label">Nous amènerons</label>
-        <span class="field-hint">Optionnel — une ou plusieurs entrées / desserts</span>
-        <div class="checkbox-group" id="apportGroup">
-          <div class="checkbox-option" data-value="Salade"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🥗</span><span class="cb-label">Salade</span><input type="checkbox" name="apport" value="Salade"></div>
-          <div class="checkbox-option" data-value="Quiche"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🥧</span><span class="cb-label">Quiche</span><input type="checkbox" name="apport" value="Quiche"></div>
-          <div class="checkbox-option" data-value="Fromage" role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🧀</span><span class="cb-label">Fromage</span><input type="checkbox" name="apport" value="Fromage"></div>
-          <div class="checkbox-option" data-value="Fruits"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🍓</span><span class="cb-label">Fruits</span><input type="checkbox" name="apport" value="Fruits"></div>
-          <div class="checkbox-option" data-value="Gateau"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🎂</span><span class="cb-label">Gâteau</span><input type="checkbox" name="apport" value="Gateau"></div>
-          <div class="checkbox-option" data-value="Autre"   role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🍱</span><span class="cb-label">Autre</span><input type="checkbox" name="apport" value="Autre"></div>
+      <!-- ══════════════════════════════════════════
+           SECTION BARBECUE — affichée si tile Barbecue cochée
+           ══════════════════════════════════════════ -->
+      <div class="conditional-block section-bbq" id="sectionBbq">
+        <div class="section-sep"><span class="section-sep-label">🍖 Participants au barbecue</span></div>
+
+        <div class="form-group">
+          <label class="field-label">Nombre de convives <span class="required">*</span></label>
+          <span class="field-hint">Vous compris·e — boissons &amp; viande offerts par le club</span>
+          <div class="counters-row">
+            <div class="counter-box" id="boxAdults">
+              <div>
+                <div class="counter-label">👤 Adultes</div>
+                <div class="counter-sub">18 ans et +</div>
+              </div>
+              <div class="counter-controls">
+                <button type="button" class="counter-btn" id="btnAdultsMinus" aria-label="Diminuer adultes">−</button>
+                <span class="counter-val" id="valAdults" aria-live="polite">0</span>
+                <button type="button" class="counter-btn" id="btnAdultsPlus" aria-label="Augmenter adultes">+</button>
+              </div>
+            </div>
+            <div class="counter-box" id="boxChildren">
+              <div>
+                <div class="counter-label">🧒 Enfants</div>
+                <div class="counter-sub">Moins de 18 ans</div>
+              </div>
+              <div class="counter-controls">
+                <button type="button" class="counter-btn" id="btnChildrenMinus" aria-label="Diminuer enfants">−</button>
+                <span class="counter-val" id="valChildren" aria-live="polite">0</span>
+                <button type="button" class="counter-btn" id="btnChildrenPlus" aria-label="Augmenter enfants">+</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <span class="clear-link" id="clearApport" role="button" tabindex="0">Effacer la sélection</span>
+
+        <!-- Apport -->
+        <div class="form-group">
+          <label class="field-label">Nous amènerons</label>
+          <span class="field-hint">Optionnel — une ou plusieurs entrées / desserts</span>
+          <div class="checkbox-group" id="apportGroup">
+            <div class="checkbox-option" data-value="Salade"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🥗</span><span class="cb-label">Salade</span><input type="checkbox" name="apport" value="Salade"></div>
+            <div class="checkbox-option" data-value="Quiche"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🥧</span><span class="cb-label">Quiche</span><input type="checkbox" name="apport" value="Quiche"></div>
+            <div class="checkbox-option" data-value="Fromage" role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🧀</span><span class="cb-label">Fromage</span><input type="checkbox" name="apport" value="Fromage"></div>
+            <div class="checkbox-option" data-value="Fruits"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🍓</span><span class="cb-label">Fruits</span><input type="checkbox" name="apport" value="Fruits"></div>
+            <div class="checkbox-option" data-value="Gateau"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🎂</span><span class="cb-label">Gâteau</span><input type="checkbox" name="apport" value="Gateau"></div>
+            <div class="checkbox-option" data-value="Autre"   role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🍱</span><span class="cb-label">Autre</span><input type="checkbox" name="apport" value="Autre"></div>
+          </div>
+          <span class="clear-link" id="clearApport" role="button" tabindex="0">Effacer la sélection</span>
+        </div>
       </div>
 
       <div class="divider"></div>
@@ -684,16 +788,110 @@
   //  URL du backend Apps Script
   //  → Remplacer par l'URL obtenue après déploiement
   // ══════════════════════════════════════════════════════
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvoLzUHbc27_Tr7rdZgfyVEKmDD0znBQgWSTR9xxAm3q_EJ5E8uPMYgd8NAMVmY6jC/exec';
+  var SCRIPT_URL = 'COLLER_URL_ICI';
 
-  // ── Counters ──────────────────────────────────────────
-  const counters = { adults: 0, children: 0 };
+  // ── État global ────────────────────────────────────────
+  var counters    = { adults: 0, children: 0 };
+  var tennisCoche = false;
+  var bbqCoche    = false;
 
-  function updateCounter(key, delta) {
+  // ══════════════════════════════════════════════════════
+  //  ACTIVITY TILES — cumulative + sections conditionnelles
+  // ══════════════════════════════════════════════════════
+  document.querySelectorAll('.activity-tile').forEach(function (tile) {
+    function toggle() {
+      var cb   = tile.querySelector('input[type="checkbox"]');
+      var next = !cb.checked;
+      cb.checked = next;
+      tile.classList.toggle('selected', next);
+      tile.setAttribute('aria-checked', String(next));
+      tennisCoche = document.getElementById('actTennis').checked;
+      bbqCoche    = document.getElementById('actDejeuner').checked;
+      _toggleSection('sectionTennis', tennisCoche);
+      _toggleSection('sectionBbq',    bbqCoche);
+      if (tennisCoche || bbqCoche) {
+        document.getElementById('activityGroup').style.outline = '';
+      }
+    }
+    tile.addEventListener('click', toggle);
+    tile.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  function _toggleSection(id, show) {
+    document.getElementById(id).classList.toggle('visible', show);
+  }
+
+  // ══════════════════════════════════════════════════════
+  //  LISTE JOUEURS
+  // ══════════════════════════════════════════════════════
+  document.getElementById('btnAddPlayer').addEventListener('click', function () {
+    _ajouterJoueur();
+  });
+
+  function _ajouterJoueur(valeur) {
+    var list = document.getElementById('playersList');
+    var rows = list.querySelectorAll('.player-row');
+    var idx  = rows.length + 1;
+
+    // Ajouter le bouton × sur le 1er joueur si pas encore présent
+    if (rows.length === 1 && !rows[0].querySelector('.btn-remove-player')) {
+      rows[0].appendChild(_creerBtnSuppr(rows[0]));
+    }
+
+    var row = document.createElement('div');
+    row.className = 'player-row';
+
+    var num = document.createElement('span');
+    num.className   = 'player-num';
+    num.textContent = idx + '.';
+
+    var inp = document.createElement('input');
+    inp.type         = 'text';
+    inp.className    = 'player-input';
+    inp.placeholder  = 'Prénom Nom';
+    inp.autocomplete = 'off';
+    if (valeur) inp.value = valeur;
+
+    row.appendChild(num);
+    row.appendChild(inp);
+    row.appendChild(_creerBtnSuppr(row));
+    list.appendChild(row);
+    inp.focus();
+  }
+
+  function _creerBtnSuppr(row) {
+    var btn = document.createElement('button');
+    btn.type      = 'button';
+    btn.className = 'btn-remove-player';
+    btn.setAttribute('aria-label', 'Supprimer ce joueur');
+    btn.textContent = '×';
+    btn.addEventListener('click', function () {
+      row.remove();
+      _renumeroterJoueurs();
+    });
+    return btn;
+  }
+
+  function _renumeroterJoueurs() {
+    document.querySelectorAll('#playersList .player-row').forEach(function (r, i) {
+      r.querySelector('.player-num').textContent = (i + 1) + '.';
+    });
+  }
+
+  function _getJoueurs() {
+    return Array.from(document.querySelectorAll('#playersList .player-input'))
+      .map(function (inp) { return inp.value.trim(); })
+      .filter(function (v) { return v.length > 0; });
+  }
+
+  // ══════════════════════════════════════════════════════
+  //  COUNTERS BBQ
+  // ══════════════════════════════════════════════════════
+  function _updateCounter(key, delta) {
     counters[key] = Math.max(0, counters[key] + delta);
-    document.getElementById('val' + key.charAt(0).toUpperCase() + key.slice(1))
-            .textContent = counters[key];
-    // Remove error style as soon as a value > 0 is set
+    document.getElementById('val' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = counters[key];
     if (counters.adults + counters.children > 0) {
       ['boxAdults', 'boxChildren'].forEach(function (id) {
         document.getElementById(id).classList.remove('counter-error');
@@ -701,39 +899,17 @@
     }
   }
 
-  document.getElementById('btnAdultsMinus') .addEventListener('click', function () { updateCounter('adults',   -1); });
-  document.getElementById('btnAdultsPlus')  .addEventListener('click', function () { updateCounter('adults',    1); });
-  document.getElementById('btnChildrenMinus').addEventListener('click', function () { updateCounter('children', -1); });
-  document.getElementById('btnChildrenPlus') .addEventListener('click', function () { updateCounter('children',  1); });
+  document.getElementById('btnAdultsMinus') .addEventListener('click', function () { _updateCounter('adults',   -1); });
+  document.getElementById('btnAdultsPlus')  .addEventListener('click', function () { _updateCounter('adults',    1); });
+  document.getElementById('btnChildrenMinus').addEventListener('click', function () { _updateCounter('children', -1); });
+  document.getElementById('btnChildrenPlus') .addEventListener('click', function () { _updateCounter('children',  1); });
 
-  // ── Activity tiles (BUG FIX 3 — event listener, pas onclick inline) ──
-  // Le pattern onclick="fn(this)" sur un <label> provoquait un double-toggle :
-  // le clic sur le label cochait la checkbox native (1 toggle) puis appelait
-  // toggleActivity qui re-lisait checked APRÈS le toggle natif → état toujours inversé.
-  // Solution : utiliser des <div> avec role="checkbox" et gérer l'état manuellement.
-  document.querySelectorAll('.activity-tile').forEach(function (tile) {
-    function toggle() {
-      var cb = tile.querySelector('input[type="checkbox"]');
-      var next = !cb.checked;
-      cb.checked = next;
-      tile.classList.toggle('selected', next);
-      tile.setAttribute('aria-checked', String(next));
-      // Clear activity-group error outline when at least one is selected
-      if (document.querySelectorAll('input[name="activite"]:checked').length > 0) {
-        document.getElementById('activityGroup').style.outline = '';
-      }
-    }
-    tile.addEventListener('click', toggle);
-    // BUG FIX 9 — accessibilité clavier : Space et Enter activent aussi la tile
-    tile.addEventListener('keydown', function (e) {
-      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
-    });
-  });
-
-  // ── Apport checkboxes (BUG FIX 6 — event listeners) ──
+  // ══════════════════════════════════════════════════════
+  //  APPORT CHECKBOXES
+  // ══════════════════════════════════════════════════════
   document.querySelectorAll('#apportGroup .checkbox-option').forEach(function (opt) {
     function toggle() {
-      var cb = opt.querySelector('input[type="checkbox"]');
+      var cb   = opt.querySelector('input[type="checkbox"]');
       var next = !cb.checked;
       cb.checked = next;
       opt.classList.toggle('selected', next);
@@ -745,14 +921,13 @@
     });
   });
 
-  // Clear apport
   var clearApportBtn = document.getElementById('clearApport');
-  clearApportBtn.addEventListener('click', function () { clearApport(); });
+  clearApportBtn.addEventListener('click',   function () { _clearApport(); });
   clearApportBtn.addEventListener('keydown', function (e) {
-    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); clearApport(); }
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); _clearApport(); }
   });
 
-  function clearApport() {
+  function _clearApport() {
     document.querySelectorAll('#apportGroup .checkbox-option').forEach(function (opt) {
       opt.querySelector('input').checked = false;
       opt.classList.remove('selected');
@@ -760,51 +935,64 @@
     });
   }
 
-  // ── Reset ──────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════
+  //  RESET COMPLET
+  // ══════════════════════════════════════════════════════
   document.getElementById('btnReset').addEventListener('click', function () {
     document.getElementById('mainForm').reset();
-    counters.adults = 0; counters.children = 0;
+
+    counters.adults   = 0;
+    counters.children = 0;
+    tennisCoche       = false;
+    bbqCoche          = false;
+
     document.getElementById('valAdults').textContent   = '0';
     document.getElementById('valChildren').textContent = '0';
+
     document.querySelectorAll('.activity-tile').forEach(function (t) {
       t.classList.remove('selected');
       t.setAttribute('aria-checked', 'false');
       t.querySelector('input').checked = false;
     });
-    clearApport();
-    // Remove all error styles
+
+    _toggleSection('sectionTennis', false);
+    _toggleSection('sectionBbq',    false);
+
+    // Réinitialiser la liste joueurs à 1 ligne vide (sans bouton ×)
+    document.getElementById('playersList').innerHTML =
+      '<div class="player-row">' +
+        '<span class="player-num">1.</span>' +
+        '<input type="text" class="player-input" placeholder="Pr\u00e9nom Nom" autocomplete="off">' +
+      '</div>';
+
+    _clearApport();
     document.querySelectorAll('.input-error').forEach(function (el) { el.classList.remove('input-error'); });
     ['boxAdults', 'boxChildren'].forEach(function (id) {
       document.getElementById(id).classList.remove('counter-error');
     });
     document.getElementById('activityGroup').style.outline = '';
-    var consentBox = document.getElementById('consentBox');
-    consentBox.style.borderColor = '';
-    consentBox.style.background  = '';
+    var cb = document.getElementById('consentBox');
+    cb.style.borderColor = '';
+    cb.style.background  = '';
   });
 
-  // ── Validation helpers ────────────────────────────────
-  function flashError(el) {
+  // ══════════════════════════════════════════════════════
+  //  VALIDATION HELPERS
+  // ══════════════════════════════════════════════════════
+  function _flashError(el) {
     el.classList.add('input-error');
     setTimeout(function () { el.classList.remove('input-error'); }, 2500);
   }
 
-  // BUG FIX 5 — validation email plus robuste (RFC-simple : présence de @ + domaine)
-  function isValidEmail(val) {
+  function _isValidEmail(val) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
   }
 
-  // ── Submit ─────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════
+  //  SUBMIT
+  // ══════════════════════════════════════════════════════
   document.getElementById('mainForm').addEventListener('submit', function (e) {
     e.preventDefault();
-
-    // Honeypot anti-spam : si le champ "website-url" (invisible) est rempli, c'est un bot
-    var honeypot = document.getElementById('website-url');
-    if (honeypot && honeypot.value.trim() !== '') {
-      // Faux succès silencieux : on ne révèle pas que le bot a été détecté
-      return false;
-    }
-
     var valid = true;
 
     var nomEl    = document.getElementById('nom');
@@ -812,12 +1000,12 @@
     var emailEl  = document.getElementById('email');
     var consent  = document.getElementById('consentRgpd');
 
-    if (!nomEl.value.trim())       { flashError(nomEl);    valid = false; }
-    if (!prenomEl.value.trim())    { flashError(prenomEl); valid = false; }
-    if (!isValidEmail(emailEl.value)) { flashError(emailEl);  valid = false; }
+    if (!nomEl.value.trim())          { _flashError(nomEl);    valid = false; }
+    if (!prenomEl.value.trim())       { _flashError(prenomEl); valid = false; }
+    if (!_isValidEmail(emailEl.value)){ _flashError(emailEl);  valid = false; }
 
-    var activites = document.querySelectorAll('input[name="activite"]:checked');
-    if (activites.length === 0) {
+    // Au moins une activité
+    if (!tennisCoche && !bbqCoche) {
       var g = document.getElementById('activityGroup');
       g.style.outline      = '2px solid rgba(224,50,50,0.45)';
       g.style.borderRadius = '14px';
@@ -825,9 +1013,20 @@
       valid = false;
     }
 
-    var total = counters.adults + counters.children;
-    if (total === 0) {
-      // BUG FIX 8 — utilisation de la classe CSS dédiée au lieu de style inline
+    // Tennis : au moins 1 joueur·se nommé·e
+    var joueurs = [];
+    if (tennisCoche) {
+      joueurs = _getJoueurs();
+      if (joueurs.length === 0) {
+        var firstInput = document.querySelector('#playersList .player-input');
+        if (firstInput) _flashError(firstInput);
+        valid = false;
+      }
+    }
+
+    // BBQ : au moins 1 convive
+    var totalBbq = counters.adults + counters.children;
+    if (bbqCoche && totalBbq === 0) {
       ['boxAdults', 'boxChildren'].forEach(function (id) {
         var b = document.getElementById(id);
         b.classList.add('counter-error');
@@ -849,95 +1048,91 @@
 
     if (!valid) return;
 
-    // ── Collecte des valeurs validées ──
-    var acts        = Array.from(activites).map(function (cb) { return cb.value; });
-    var hasTennis   = acts.indexOf('tennis')   !== -1;
-    var hasBarbecue = acts.indexOf('dejeuner') !== -1;
-    var apports     = Array.from(document.querySelectorAll('input[name="apport"]:checked'))
-                          .map(function (cb) { return cb.value; });
+    // ── Payload ──
+    var apports = Array.from(document.querySelectorAll('input[name="apport"]:checked'))
+                       .map(function (cb) { return cb.value; });
 
     var payload = {
-      nom      : nomEl.value.trim(),
-      prenom   : prenomEl.value.trim(),
-      email    : emailEl.value.trim(),
-      activite : acts,
-      adultes  : counters.adults,
-      enfants  : counters.children,
-      apport   : apports,
-      rgpd     : consent.checked
+      nom        : nomEl.value.trim(),
+      prenom     : prenomEl.value.trim(),
+      email      : emailEl.value.trim(),
+      activite   : [],
+      joueurs    : [],
+      adultesBbq : 0,
+      enfantsBbq : 0,
+      apport     : apports,
+      rgpd       : consent.checked
     };
 
-    // ── État de chargement ──
+    if (tennisCoche) { payload.activite.push('tennis');   payload.joueurs    = joueurs; }
+    if (bbqCoche)    { payload.activite.push('dejeuner'); payload.adultesBbq = counters.adults; payload.enfantsBbq = counters.children; }
+
+    // ── Spinner ──
     var btnSubmit = document.querySelector('.btn-submit');
     btnSubmit.disabled    = true;
-    btnSubmit.textContent = '⏳ Envoi en cours…';
+    btnSubmit.textContent = '\u23f3 Envoi en cours\u2026';
 
-    // ── Envoi vers le backend Apps Script ──
     fetch(SCRIPT_URL, {
       method  : 'POST',
-      // Apps Script Web App impose no-cors en mode anonymous →
-      // on envoie en text/plain pour contourner le preflight CORS
-      // tout en parsant le JSON dans doPost()
       headers : { 'Content-Type': 'text/plain;charset=utf-8' },
       body    : JSON.stringify(payload)
     })
-    .then(function (response) {
-      return response.json();
-    })
+    .then(function (r) { return r.json(); })
     .then(function (data) {
       btnSubmit.disabled    = false;
-      btnSubmit.textContent = '✓ \u00A0S\'INSCRIRE À LA FÊTE';
+      btnSubmit.textContent = '\u2713 \u00a0S\'INSCRIRE \u00c0 LA F\u00caTe';
 
       if (!data.success) {
-        // Erreur métier retournée par le serveur
-        _afficherErreurServeur(data.message || 'Erreur lors de l\'envoi. Veuillez réessayer.');
+        _afficherErreurServeur(data.message || 'Erreur lors de l\'envoi. Veuillez r\u00e9essayer.');
         return;
       }
 
-      // ── Afficher le panneau de succès ──
-      var icon  = hasTennis && hasBarbecue ? '🎾' : hasTennis ? '🎾' : '🍖';
-      var badge = hasTennis && hasBarbecue
-        ? '🎾 Tennis · 🍖 Barbecue — on vous attend !'
-        : hasTennis ? '🎾 À bientôt sur les courts !'
-                    : '🍖 À bientôt autour du grill !';
+      // Panneau de succès
+      var icon  = tennisCoche && bbqCoche ? '\u{1F3BE}' : tennisCoche ? '\u{1F3BE}' : '\u{1F356}';
+      var badge = tennisCoche && bbqCoche
+        ? '\u{1F3BE} Tennis \u00b7 \u{1F356} Barbecue \u2014 on vous attend !'
+        : tennisCoche ? '\u{1F3BE} \u00c0 bient\u00f4t sur les courts !'
+                      : '\u{1F356} \u00c0 bient\u00f4t autour du grill !';
 
       document.getElementById('successIcon').textContent  = icon;
       document.getElementById('successBadge').textContent = badge;
 
-      var adLabel = counters.adults   > 1 ? 'adultes' : 'adulte';
-      var enLabel = counters.children > 1 ? 'enfants' : 'enfant';
-      var pLabel  = total             > 1 ? 'participant·es' : 'participant·e';
-
       var bodyEl = document.getElementById('successBody');
       bodyEl.innerHTML = '';
 
-      var line1   = document.createElement('span');
-      var strong1 = document.createElement('strong');
-      strong1.textContent = prenomEl.value.trim() + ' ' + nomEl.value.trim();
-      line1.appendChild(document.createTextNode('Merci '));
-      line1.appendChild(strong1);
-      line1.appendChild(document.createTextNode(', votre inscription à la fête du club du VAC Tennis'));
-      bodyEl.appendChild(line1);
-      bodyEl.appendChild(document.createElement('br'));
-
-      var line2   = document.createElement('span');
-      var strong2 = document.createElement('strong');
-      strong2.textContent = 'dimanche 28 juin 2026';
-      line2.appendChild(document.createTextNode('le '));
-      line2.appendChild(strong2);
-      line2.appendChild(document.createTextNode(' a bien été enregistrée.'));
-      bodyEl.appendChild(line2);
+      var s1 = document.createElement('span');
+      var b1 = document.createElement('strong');
+      b1.textContent = prenomEl.value.trim() + ' ' + nomEl.value.trim();
+      s1.appendChild(document.createTextNode('Merci '));
+      s1.appendChild(b1);
+      s1.appendChild(document.createTextNode(', votre inscription a bien \u00e9t\u00e9 enregistr\u00e9e.'));
+      bodyEl.appendChild(s1);
       bodyEl.appendChild(document.createElement('br'));
       bodyEl.appendChild(document.createElement('br'));
 
-      var line3   = document.createElement('span');
-      var strong3 = document.createElement('strong');
-      strong3.textContent = total + ' ' + pLabel;
-      line3.appendChild(strong3);
-      line3.appendChild(document.createTextNode(
-        ' : ' + counters.adults + ' ' + adLabel + ', ' + counters.children + ' ' + enLabel + '.'
-      ));
-      bodyEl.appendChild(line3);
+      if (tennisCoche && joueurs.length > 0) {
+        var s2 = document.createElement('span');
+        var b2 = document.createElement('strong');
+        b2.textContent = joueurs.length + ' joueur' + (joueurs.length > 1 ? 's' : '') + ' inscrit' + (joueurs.length > 1 ? 's' : '') + '\u00a0:';
+        s2.appendChild(document.createTextNode('\u{1F3BE} '));
+        s2.appendChild(b2);
+        s2.appendChild(document.createTextNode(' ' + joueurs.join(', ')));
+        bodyEl.appendChild(s2);
+        bodyEl.appendChild(document.createElement('br'));
+      }
+
+      if (bbqCoche) {
+        var s3 = document.createElement('span');
+        var b3 = document.createElement('strong');
+        b3.textContent = totalBbq + ' convive' + (totalBbq > 1 ? 's' : '') + ' au barbecue';
+        s3.appendChild(document.createTextNode('\u{1F356} '));
+        s3.appendChild(b3);
+        s3.appendChild(document.createTextNode(
+          ' (' + counters.adults + ' adulte' + (counters.adults > 1 ? 's' : '') +
+          ', ' + counters.children + ' enfant' + (counters.children > 1 ? 's' : '') + ')'
+        ));
+        bodyEl.appendChild(s3);
+      }
 
       document.getElementById('formBody').style.display = 'none';
       var panel = document.getElementById('successPanel');
@@ -947,38 +1142,25 @@
     })
     .catch(function (err) {
       btnSubmit.disabled    = false;
-      btnSubmit.textContent = '✓ \u00A0S\'INSCRIRE À LA FÊTE';
-      _afficherErreurServeur('Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.');
+      btnSubmit.textContent = '\u2713 \u00a0S\'INSCRIRE \u00c0 LA F\u00caTe';
+      _afficherErreurServeur('Impossible de contacter le serveur. V\u00e9rifiez votre connexion et r\u00e9essayez.');
       console.error('Fetch error:', err);
     });
   });
 
-  // ── Affichage d'une erreur serveur inline ─────────────
+  // ── Erreur serveur inline ──────────────────────────────
   function _afficherErreurServeur(msg) {
-    var existing = document.getElementById('serverError');
-    if (existing) existing.remove();
-
+    var ex = document.getElementById('serverError');
+    if (ex) ex.remove();
     var div = document.createElement('div');
     div.id = 'serverError';
-    div.style.cssText = [
-      'background:#fff0f0',
-      'border:1.5px solid var(--vac-red)',
-      'border-radius:10px',
-      'padding:0.9rem 1.1rem',
-      'margin-bottom:1rem',
-      'font-size:0.84rem',
-      'color:var(--vac-red)',
-      'font-weight:600',
-      'display:flex',
-      'align-items:center',
-      'gap:0.6rem'
-    ].join(';');
-    div.innerHTML = '⚠️ <span>' + msg + '</span>';
-
+    div.style.cssText = 'background:#fff0f0;border:1.5px solid var(--vac-red);border-radius:10px;' +
+      'padding:0.9rem 1.1rem;margin-bottom:1rem;font-size:0.84rem;' +
+      'color:var(--vac-red);font-weight:600;display:flex;align-items:center;gap:0.6rem';
+    div.innerHTML = '\u26a0\ufe0f <span>' + msg + '</span>';
     var btnSubmit = document.querySelector('.btn-submit');
     btnSubmit.parentNode.insertBefore(div, btnSubmit);
     div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
     setTimeout(function () { if (div.parentNode) div.remove(); }, 6000);
   }
 
