@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fête du Club VAC Tennis – 28 Juin 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --vac-navy:      #0e2352;
+      --vac-navy-dark: #091a40;
+      --vac-navy-mid:  #163070;
+      --vac-blue:      #2d8fe8;
+      --vac-blue-cta:  #4db8ff;
+      --white:         #ffffff;
+      --off-white:     #f4f8ff;
+      --text:          #0e2352;
+      --text-muted:    #4a6080;
+      --border:        #c5d6ec;
+      --bg-input:      #fafdff;
+      --vac-yellow:    #f5c842;
+      --vac-red:       #e03232;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--off-white);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 0 5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(14,35,82,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 90%, rgba(45,143,232,0.06) 0%, transparent 55%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .card {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 640px;
+      background: var(--white);
+      border-radius: 0 0 18px 18px;
+      overflow: hidden;
+      box-shadow:
+        0 2px 4px rgba(14,35,82,0.08),
+        0 20px 60px rgba(14,35,82,0.16),
+        0 0 0 1px rgba(45,143,232,0.12);
+      animation: fadeUp 0.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══ HEADER ══ */
+    .card-header {
+      background: var(--vac-navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-topbar {
+      background: linear-gradient(90deg, var(--vac-navy-dark) 0%, var(--vac-navy-mid) 40%, var(--vac-blue) 100%);
+      height: 4px;
+    }
+
+    .header-inner {
+      padding: 2rem 2.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header::before {
+      content: '';
+      position: absolute; top: -55px; right: -55px;
+      width: 190px; height: 190px;
+      border-radius: 50%;
+      border: 28px solid rgba(77,184,255,0.08);
+      /* BUG FIX 1 — z-index:0 pour ne pas couvrir le contenu du header-inner (z-index:1) */
+      z-index: 0;
+    }
+    .card-header::after {
+      content: '';
+      position: absolute; bottom: -35px; left: 50px;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 18px solid rgba(77,184,255,0.07);
+      z-index: 0;
+    }
+
+    .logo-row {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .logo-badge {
+      width: 46px; height: 46px;
+      background: var(--vac-yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(245,200,66,0.25), 0 4px 12px rgba(245,200,66,0.3);
+    }
+
+    .logo-text-wrap { display: flex; flex-direction: column; }
+
+    .logo-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+    .logo-name .vac    { color: var(--white); }
+    .logo-name .tennis { color: var(--vac-blue-cta); margin-left: 5px; }
+
+    .logo-sub {
+      font-size: 0.66rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .card-title .accent { color: var(--vac-blue-cta); }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.58);
+      margin-bottom: 1.3rem;
+    }
+    .card-subtitle strong { color: var(--vac-blue-cta); }
+
+    .info-pills { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .info-pill {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 0.38rem 1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.8);
+      width: fit-content;
+    }
+
+    .pill-deadline {
+      background: rgba(77,184,255,0.15);
+      border-color: rgba(77,184,255,0.35);
+      color: var(--vac-blue-cta);
+      font-weight: 700;
+    }
+
+    /* ══ FORM BODY ══ */
+    .card-body { padding: 2.2rem 2.5rem; }
+
+    .form-group { margin-bottom: 1.45rem; }
+
+    .field-label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--vac-navy);
+      margin-bottom: 0.48rem;
+      letter-spacing: 0.01em;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-bottom: 0.48rem;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--bg-input);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    /* BUG FIX 2 — suppression du sélecteur input[type="number"] (il n'y a plus de champ number ;
+       les compteurs sont gérés par JS) et des règles webkit associées qui polluaient inutilement */
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      border-color: var(--vac-blue);
+      box-shadow: 0 0 0 3px rgba(45,143,232,0.12);
+    }
+
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+    /* ── ACTIVITY TILES ── */
+    .activity-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .activity-tile {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center; gap: 0.35rem;
+      padding: 1.15rem 0.9rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+      background: var(--bg-input);
+      user-select: none;
+      position: relative;
+      /* BUG FIX 3 — suppression de onclick inline dans le HTML ; la gestion se fait via
+         addEventListener dans le JS pour éviter le double-toggle causé par le click
+         qui se propage au label ET déclenche le changement natif de la checkbox */
+    }
+    .activity-tile:hover {
+      border-color: var(--vac-blue);
+      background: #eef5fd;
+      transform: translateY(-2px);
+    }
+    /* BUG FIX 3 (suite) — la checkbox est cachée mais reste accessible au JS */
+    .activity-tile input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 0; height: 0;
+    }
+
+    .check-mark {
+      display: none;
+      position: absolute; top: 8px; right: 9px;
+      width: 20px; height: 20px;
+      background: var(--vac-blue);
+      border-radius: 50%;
+      align-items: center; justify-content: center;
+      font-size: 0.62rem; color: white; font-weight: 700;
+    }
+    .activity-tile.selected .check-mark { display: flex; }
+    .activity-tile.selected {
+      border-color: var(--vac-blue);
+      background: #ddeefa;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(45,143,232,0.14);
+    }
+    .tile-icon  { font-size: 1.9rem; line-height: 1; }
+    .tile-title { font-size: 0.86rem; font-weight: 700; color: var(--text); font-family: 'Montserrat', sans-serif; }
+    .tile-desc  { font-size: 0.71rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* ── COUNTERS ── */
+    .counters-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+    .counter-box {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      background: var(--bg-input);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 0.5rem;
+      /* BUG FIX 4 — transition sur border-color pour que le flashError soit smooth */
+      transition: border-color 0.2s;
+    }
+    .counter-label { font-size: 0.82rem; font-weight: 700; color: var(--text); font-family: 'Montserrat', sans-serif; }
+    .counter-sub   { font-size: 0.68rem; color: var(--text-muted); margin-top: 1px; }
+    .counter-controls { display: flex; align-items: center; gap: 0.55rem; }
+
+    .counter-btn {
+      width: 30px; height: 30px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 1rem; font-weight: 700;
+      color: var(--vac-navy);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+      /* BUG FIX 5 — type="button" garanti dans le HTML pour éviter soumission
+         accidentelle du formulaire si Enter est pressé (déjà présent, vérifié OK) */
+    }
+    .counter-btn:hover { background: #ddeefa; border-color: var(--vac-blue); color: var(--vac-blue); }
+
+    .counter-val {
+      font-size: 1rem; font-weight: 800;
+      color: var(--vac-navy);
+      min-width: 22px; text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ── APPORT CHECKBOXES ── */
+    .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+
+    .checkbox-option {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.58rem 0.85rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--bg-input);
+      user-select: none;
+    }
+    .checkbox-option:hover    { border-color: var(--vac-blue); background: #eef5fd; }
+    .checkbox-option.selected { border-color: var(--vac-blue); background: #ddeefa; }
+    /* BUG FIX 6 — même traitement que les activity-tiles : checkbox native cachée
+       proprement, gestion visuelle 100% JS/CSS, pas de double-toggle */
+    .checkbox-option input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 0; height: 0;
+    }
+    .cb-icon  { font-size: 0.95rem; flex-shrink: 0; }
+    .cb-label { font-size: 0.83rem; color: var(--text); font-weight: 500; }
+
+    .clear-link {
+      display: inline-block;
+      margin-top: 0.45rem;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+    }
+    .clear-link:hover { color: var(--vac-blue); }
+
+    .divider { height: 1px; background: var(--border); margin: 1.8rem 0; }
+
+    /* ── CONSENT ── */
+    .consent-box {
+      background: #eef5fd;
+      border: 1.5px solid #b8d4f0;
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1.4rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .consent-box label {
+      display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer;
+    }
+    .consent-box input[type="checkbox"] {
+      accent-color: var(--vac-blue);
+      width: 16px; height: 16px;
+      margin-top: 2px; flex-shrink: 0;
+      /* BUG FIX 7 — cette checkbox reste visible/interactive (c'est une vraie case à cocher
+         accessible, pas un contrôle visuel custom) : on NE la cache pas */
+    }
+    .consent-text {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+      line-height: 1.58;
+    }
+    .consent-text a { color: var(--vac-blue); text-decoration: underline; }
+    .consent-text strong { color: var(--text); }
+
+    /* ── SUBMIT ── */
+    .btn-submit {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%;
+      padding: 0.95rem 1.5rem;
+      background: linear-gradient(135deg, var(--vac-blue) 0%, var(--vac-blue-cta) 100%);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.93rem; font-weight: 800;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(45,143,232,0.3);
+    }
+    .btn-submit:hover  { filter: brightness(1.08); box-shadow: 0 6px 22px rgba(45,143,232,0.4); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); filter: brightness(0.97); }
+
+    .btn-clear {
+      display: block; width: 100%;
+      padding: 0.62rem;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 0.55rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-clear:hover { border-color: var(--vac-blue); color: var(--vac-navy); }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: var(--vac-navy);
+      padding: 1.6rem 2.5rem 1.4rem;
+    }
+    .footer-rgpd {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 0.9rem;
+    }
+    .footer-rgpd a { color: rgba(77,184,255,0.8); text-decoration: underline; }
+    .footer-rgpd strong { color: rgba(255,255,255,0.7); }
+
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .footer-brand .fvac    { color: rgba(255,255,255,0.7); }
+    .footer-brand .ftennis { color: var(--vac-blue-cta); }
+
+    .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--vac-blue-cta); }
+
+    /* ── SUCCESS ── */
+    .success-panel { display: none; padding: 3.5rem 2.5rem; text-align: center; }
+    .success-panel.visible { display: block; }
+
+    .success-icon-wrap {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--vac-blue), var(--vac-blue-cta));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 4px 18px rgba(45,143,232,0.3);
+      animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes pop {
+      from { transform: scale(0.4); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    .success-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem; font-weight: 800;
+      color: var(--vac-navy); margin-bottom: 0.6rem;
+    }
+    .success-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+    .success-badge {
+      display: inline-block; margin-top: 1.2rem;
+      padding: 0.5rem 1.3rem;
+      background: linear-gradient(135deg, var(--vac-blue), var(--vac-blue-cta));
+      border-radius: 100px;
+      font-size: 0.78rem; font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      color: white; letter-spacing: 0.03em;
+    }
+
+    .required { color: var(--vac-red); margin-left: 2px; }
+    .input-error {
+      border-color: var(--vac-red) !important;
+      box-shadow: 0 0 0 3px rgba(224,50,50,0.1) !important;
+    }
+    /* BUG FIX 8 — règle .counter-error séparée pour les counter-box (pas un input,
+       .input-error ne s'appliquait pas correctement via style inline) */
+    .counter-error { border-color: var(--vac-red) !important; }
+
+    @media (max-width: 500px) {
+      .card-body, .header-inner, .card-footer { padding-left: 1.4rem; padding-right: 1.4rem; }
+      .card-title { font-size: 1.4rem; }
+      .activity-group, .counters-row, .checkbox-group, .col-2 { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <!-- ══ HEADER ══ -->
+  <div class="card-header">
+    <div class="header-topbar"></div>
+    <div class="header-inner">
+      <div class="logo-row">
+        <div class="logo-badge">🎾</div>
+        <div class="logo-text-wrap">
+          <div class="logo-name">
+            <span class="vac">VAC</span><span class="tennis">TENNIS</span>
+          </div>
+          <div class="logo-sub">Verneuil-sur-Seine</div>
+        </div>
+      </div>
+      <h1 class="card-title">Fête du Club<br><span class="accent">Dimanche 28 Juin 2026</span></h1>
+      <p class="card-subtitle">Formulaire d'inscription — réponse attendue avant le <strong>23 juin 2026</strong></p>
+      <div class="info-pills">
+        <span class="info-pill pill-deadline">⏰ Date limite : lundi 23 juin 2026</span>
+        <span class="info-pill">🥩 Boissons &amp; viande pris en charge par le club</span>
+        <span class="info-pill">🍽️ Ouvert à tous·tes les adhérent·es — joueur·ses et non-joueur·ses</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FORM ══ -->
+  <div class="card-body" id="formBody">
+    <form id="mainForm" novalidate>
+
+      <!-- Nom / Prénom -->
+      <div class="col-2">
+        <div class="form-group">
+          <label class="field-label" for="nom">Nom <span class="required">*</span></label>
+          <input type="text" id="nom" name="nom" placeholder="Votre nom" autocomplete="family-name" required>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="prenom">Prénom <span class="required">*</span></label>
+          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name" required>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label class="field-label" for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="votre@email.fr" autocomplete="email" required>
+      </div>
+
+      <!-- Activités cumulatives — BUG FIX 3 : pas d'onclick inline sur le label -->
+      <div class="form-group">
+        <label class="field-label">
+          Je participe à <span class="required">*</span>
+          <span class="field-hint" style="display:inline; font-weight:400; font-family:'Open Sans',sans-serif">— vous pouvez cocher les deux</span>
+        </label>
+        <div class="activity-group" id="activityGroup">
+          <div class="activity-tile" id="tileTennis" role="checkbox" aria-checked="false" tabindex="0">
+            <input type="checkbox" name="activite" value="tennis" id="actTennis">
+            <div class="check-mark" aria-hidden="true">✓</div>
+            <span class="tile-icon">🎾</span>
+            <span class="tile-title">Tournoi / Tennis</span>
+            <span class="tile-desc">Je joue durant la journée</span>
+          </div>
+          <div class="activity-tile" id="tileDejeuner" role="checkbox" aria-checked="false" tabindex="0">
+            <input type="checkbox" name="activite" value="dejeuner" id="actDejeuner">
+            <div class="check-mark" aria-hidden="true">✓</div>
+            <span class="tile-icon">🍖</span>
+            <span class="tile-title">Barbecue</span>
+            <span class="tile-desc">Je participe au déjeuner barbecue</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compteurs adultes / enfants -->
+      <div class="form-group">
+        <label class="field-label">Nombre de participant·es <span class="required">*</span></label>
+        <span class="field-hint">Vous compris·e</span>
+        <div class="counters-row">
+          <div class="counter-box" id="boxAdults">
+            <div>
+              <div class="counter-label">👤 Adultes</div>
+              <div class="counter-sub">18 ans et +</div>
+            </div>
+            <div class="counter-controls">
+              <button type="button" class="counter-btn" id="btnAdultsMinus" aria-label="Diminuer adultes">−</button>
+              <span class="counter-val" id="valAdults" aria-live="polite">0</span>
+              <button type="button" class="counter-btn" id="btnAdultsPlus"  aria-label="Augmenter adultes">+</button>
+            </div>
+          </div>
+          <div class="counter-box" id="boxChildren">
+            <div>
+              <div class="counter-label">🧒 Enfants</div>
+              <div class="counter-sub">Moins de 18 ans</div>
+            </div>
+            <div class="counter-controls">
+              <button type="button" class="counter-btn" id="btnChildrenMinus" aria-label="Diminuer enfants">−</button>
+              <span class="counter-val" id="valChildren" aria-live="polite">0</span>
+              <button type="button" class="counter-btn" id="btnChildrenPlus"  aria-label="Augmenter enfants">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apport — BUG FIX 6 : pas d'onclick inline -->
+      <div class="form-group">
+        <label class="field-label">Nous amènerons</label>
+        <span class="field-hint">Optionnel — une ou plusieurs entrées / desserts</span>
+        <div class="checkbox-group" id="apportGroup">
+          <div class="checkbox-option" data-value="Salade"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🥗</span><span class="cb-label">Salade</span><input type="checkbox" name="apport" value="Salade"></div>
+          <div class="checkbox-option" data-value="Quiche"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🥧</span><span class="cb-label">Quiche</span><input type="checkbox" name="apport" value="Quiche"></div>
+          <div class="checkbox-option" data-value="Fromage" role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🧀</span><span class="cb-label">Fromage</span><input type="checkbox" name="apport" value="Fromage"></div>
+          <div class="checkbox-option" data-value="Fruits"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🍓</span><span class="cb-label">Fruits</span><input type="checkbox" name="apport" value="Fruits"></div>
+          <div class="checkbox-option" data-value="Gateau"  role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🎂</span><span class="cb-label">Gâteau</span><input type="checkbox" name="apport" value="Gateau"></div>
+          <div class="checkbox-option" data-value="Autre"   role="checkbox" aria-checked="false" tabindex="0"><span class="cb-icon">🍱</span><span class="cb-label">Autre</span><input type="checkbox" name="apport" value="Autre"></div>
+        </div>
+        <span class="clear-link" id="clearApport" role="button" tabindex="0">Effacer la sélection</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Consentement RGPD -->
+      <div class="consent-box" id="consentBox">
+        <label>
+          <input type="checkbox" id="consentRgpd" name="consentRgpd" required>
+          <span class="consent-text">
+            <strong>Consentement RGPD —</strong> En soumettant ce formulaire, vous acceptez que <strong>Verneuil A.C. Tennis</strong> collecte vos données (nom, prénom, email) pour organiser la fête du club du 28 juin 2026. Ces données ne seront ni cédées ni vendues. Conformément au RGPD (UE 2016/679), vous disposez d'un droit d'accès, de rectification et d'effacement : <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a> — <a href="https://vactennis.fr/politique-confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.<span class="required">*</span>
+          </span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit">✓ &nbsp;S'INSCRIRE À LA FÊTE</button>
+      <button type="button" class="btn-clear" id="btnReset">Effacer le formulaire</button>
+
+    </form>
+  </div>
+
+  <!-- ══ SUCCESS ══ -->
+  <div class="success-panel" id="successPanel" role="alert" aria-live="assertive">
+    <div class="success-icon-wrap" id="successIcon">🎉</div>
+    <div class="success-title">Inscription enregistrée !</div>
+    <p class="success-body" id="successBody"></p>
+    <div class="success-badge" id="successBadge">À bientôt !</div>
+  </div>
+
+  <!-- ══ FOOTER LÉGAL ══ -->
+  <div class="card-footer">
+    <p class="footer-rgpd">
+      <strong>Responsable du traitement :</strong> Verneuil A.C. Tennis — Association loi 1901 affiliée FFT — Gymnase Pierre de Coubertin, Rue Jean Zay, 78480 Verneuil-sur-Seine — <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a> — Directeur de la publication : Sébastien Tautou, Président.<br>
+      <strong>Finalité :</strong> Organisation et gestion des inscriptions à la fête du club (28/06/2026). <strong>Durée de conservation :</strong> données supprimées au plus tard 30 jours après l'événement. <strong>Vos droits :</strong> accès, rectification, effacement, portabilité, opposition — <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a> ou <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.
+    </p>
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <span class="fvac">VAC</span><span class="ftennis">&nbsp;TENNIS</span>
+        <span style="color:rgba(255,255,255,0.25); font-weight:400; margin-left:4px">© 2026</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://vactennis.fr/mentions-legales.html" target="_blank" rel="noopener">Mentions légales</a>
+        <a href="https://vactennis.fr/politique-confidentialite.html" target="_blank" rel="noopener">Confidentialité</a>
+        <a href="https://vactennis.fr" target="_blank" rel="noopener">vactennis.fr</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ══════════════════════════════════════════════════════
+  //  URL du backend Apps Script
+  //  → Remplacer par l'URL obtenue après déploiement
+  // ══════════════════════════════════════════════════════
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvoLzUHbc27_Tr7rdZgfyVEKmDD0znBQgWSTR9xxAm3q_EJ5E8uPMYgd8NAMVmY6jC/exec';
+
+  // ── Counters ──────────────────────────────────────────
+  const counters = { adults: 0, children: 0 };
+
+  function updateCounter(key, delta) {
+    counters[key] = Math.max(0, counters[key] + delta);
+    document.getElementById('val' + key.charAt(0).toUpperCase() + key.slice(1))
+            .textContent = counters[key];
+    // Remove error style as soon as a value > 0 is set
+    if (counters.adults + counters.children > 0) {
+      ['boxAdults', 'boxChildren'].forEach(function (id) {
+        document.getElementById(id).classList.remove('counter-error');
+      });
+    }
+  }
+
+  document.getElementById('btnAdultsMinus') .addEventListener('click', function () { updateCounter('adults',   -1); });
+  document.getElementById('btnAdultsPlus')  .addEventListener('click', function () { updateCounter('adults',    1); });
+  document.getElementById('btnChildrenMinus').addEventListener('click', function () { updateCounter('children', -1); });
+  document.getElementById('btnChildrenPlus') .addEventListener('click', function () { updateCounter('children',  1); });
+
+  // ── Activity tiles (BUG FIX 3 — event listener, pas onclick inline) ──
+  // Le pattern onclick="fn(this)" sur un <label> provoquait un double-toggle :
+  // le clic sur le label cochait la checkbox native (1 toggle) puis appelait
+  // toggleActivity qui re-lisait checked APRÈS le toggle natif → état toujours inversé.
+  // Solution : utiliser des <div> avec role="checkbox" et gérer l'état manuellement.
+  document.querySelectorAll('.activity-tile').forEach(function (tile) {
+    function toggle() {
+      var cb = tile.querySelector('input[type="checkbox"]');
+      var next = !cb.checked;
+      cb.checked = next;
+      tile.classList.toggle('selected', next);
+      tile.setAttribute('aria-checked', String(next));
+      // Clear activity-group error outline when at least one is selected
+      if (document.querySelectorAll('input[name="activite"]:checked').length > 0) {
+        document.getElementById('activityGroup').style.outline = '';
+      }
+    }
+    tile.addEventListener('click', toggle);
+    // BUG FIX 9 — accessibilité clavier : Space et Enter activent aussi la tile
+    tile.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // ── Apport checkboxes (BUG FIX 6 — event listeners) ──
+  document.querySelectorAll('#apportGroup .checkbox-option').forEach(function (opt) {
+    function toggle() {
+      var cb = opt.querySelector('input[type="checkbox"]');
+      var next = !cb.checked;
+      cb.checked = next;
+      opt.classList.toggle('selected', next);
+      opt.setAttribute('aria-checked', String(next));
+    }
+    opt.addEventListener('click', toggle);
+    opt.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // Clear apport
+  var clearApportBtn = document.getElementById('clearApport');
+  clearApportBtn.addEventListener('click', function () { clearApport(); });
+  clearApportBtn.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); clearApport(); }
+  });
+
+  function clearApport() {
+    document.querySelectorAll('#apportGroup .checkbox-option').forEach(function (opt) {
+      opt.querySelector('input').checked = false;
+      opt.classList.remove('selected');
+      opt.setAttribute('aria-checked', 'false');
+    });
+  }
+
+  // ── Reset ──────────────────────────────────────────────
+  document.getElementById('btnReset').addEventListener('click', function () {
+    document.getElementById('mainForm').reset();
+    counters.adults = 0; counters.children = 0;
+    document.getElementById('valAdults').textContent   = '0';
+    document.getElementById('valChildren').textContent = '0';
+    document.querySelectorAll('.activity-tile').forEach(function (t) {
+      t.classList.remove('selected');
+      t.setAttribute('aria-checked', 'false');
+      t.querySelector('input').checked = false;
+    });
+    clearApport();
+    // Remove all error styles
+    document.querySelectorAll('.input-error').forEach(function (el) { el.classList.remove('input-error'); });
+    ['boxAdults', 'boxChildren'].forEach(function (id) {
+      document.getElementById(id).classList.remove('counter-error');
+    });
+    document.getElementById('activityGroup').style.outline = '';
+    var consentBox = document.getElementById('consentBox');
+    consentBox.style.borderColor = '';
+    consentBox.style.background  = '';
+  });
+
+  // ── Validation helpers ────────────────────────────────
+  function flashError(el) {
+    el.classList.add('input-error');
+    setTimeout(function () { el.classList.remove('input-error'); }, 2500);
+  }
+
+  // BUG FIX 5 — validation email plus robuste (RFC-simple : présence de @ + domaine)
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  }
+
+  // ── Submit ─────────────────────────────────────────────
+  document.getElementById('mainForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var valid = true;
+
+    var nomEl    = document.getElementById('nom');
+    var prenomEl = document.getElementById('prenom');
+    var emailEl  = document.getElementById('email');
+    var consent  = document.getElementById('consentRgpd');
+
+    if (!nomEl.value.trim())       { flashError(nomEl);    valid = false; }
+    if (!prenomEl.value.trim())    { flashError(prenomEl); valid = false; }
+    if (!isValidEmail(emailEl.value)) { flashError(emailEl);  valid = false; }
+
+    var activites = document.querySelectorAll('input[name="activite"]:checked');
+    if (activites.length === 0) {
+      var g = document.getElementById('activityGroup');
+      g.style.outline      = '2px solid rgba(224,50,50,0.45)';
+      g.style.borderRadius = '14px';
+      setTimeout(function () { g.style.outline = ''; }, 2500);
+      valid = false;
+    }
+
+    var total = counters.adults + counters.children;
+    if (total === 0) {
+      // BUG FIX 8 — utilisation de la classe CSS dédiée au lieu de style inline
+      ['boxAdults', 'boxChildren'].forEach(function (id) {
+        var b = document.getElementById(id);
+        b.classList.add('counter-error');
+        setTimeout(function () { b.classList.remove('counter-error'); }, 2500);
+      });
+      valid = false;
+    }
+
+    if (!consent.checked) {
+      var box = document.getElementById('consentBox');
+      box.style.borderColor = 'var(--vac-red)';
+      box.style.background  = '#fff0f0';
+      setTimeout(function () {
+        box.style.borderColor = '';
+        box.style.background  = '';
+      }, 2500);
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    // ── Collecte des valeurs validées ──
+    var acts        = Array.from(activites).map(function (cb) { return cb.value; });
+    var hasTennis   = acts.indexOf('tennis')   !== -1;
+    var hasBarbecue = acts.indexOf('dejeuner') !== -1;
+    var apports     = Array.from(document.querySelectorAll('input[name="apport"]:checked'))
+                          .map(function (cb) { return cb.value; });
+
+    var payload = {
+      nom      : nomEl.value.trim(),
+      prenom   : prenomEl.value.trim(),
+      email    : emailEl.value.trim(),
+      activite : acts,
+      adultes  : counters.adults,
+      enfants  : counters.children,
+      apport   : apports,
+      rgpd     : consent.checked
+    };
+
+    // ── État de chargement ──
+    var btnSubmit = document.querySelector('.btn-submit');
+    btnSubmit.disabled    = true;
+    btnSubmit.textContent = '⏳ Envoi en cours…';
+
+    // ── Envoi vers le backend Apps Script ──
+    fetch(SCRIPT_URL, {
+      method  : 'POST',
+      // Apps Script Web App impose no-cors en mode anonymous →
+      // on envoie en text/plain pour contourner le preflight CORS
+      // tout en parsant le JSON dans doPost()
+      headers : { 'Content-Type': 'text/plain;charset=utf-8' },
+      body    : JSON.stringify(payload)
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      btnSubmit.disabled    = false;
+      btnSubmit.textContent = '✓ \u00A0S\'INSCRIRE À LA FÊTE';
+
+      if (!data.success) {
+        // Erreur métier retournée par le serveur
+        _afficherErreurServeur(data.message || 'Erreur lors de l\'envoi. Veuillez réessayer.');
+        return;
+      }
+
+      // ── Afficher le panneau de succès ──
+      var icon  = hasTennis && hasBarbecue ? '🎾' : hasTennis ? '🎾' : '🍖';
+      var badge = hasTennis && hasBarbecue
+        ? '🎾 Tennis · 🍖 Barbecue — on vous attend !'
+        : hasTennis ? '🎾 À bientôt sur les courts !'
+                    : '🍖 À bientôt autour du grill !';
+
+      document.getElementById('successIcon').textContent  = icon;
+      document.getElementById('successBadge').textContent = badge;
+
+      var adLabel = counters.adults   > 1 ? 'adultes' : 'adulte';
+      var enLabel = counters.children > 1 ? 'enfants' : 'enfant';
+      var pLabel  = total             > 1 ? 'participant·es' : 'participant·e';
+
+      var bodyEl = document.getElementById('successBody');
+      bodyEl.innerHTML = '';
+
+      var line1   = document.createElement('span');
+      var strong1 = document.createElement('strong');
+      strong1.textContent = prenomEl.value.trim() + ' ' + nomEl.value.trim();
+      line1.appendChild(document.createTextNode('Merci '));
+      line1.appendChild(strong1);
+      line1.appendChild(document.createTextNode(', votre inscription à la fête du club du VAC Tennis'));
+      bodyEl.appendChild(line1);
+      bodyEl.appendChild(document.createElement('br'));
+
+      var line2   = document.createElement('span');
+      var strong2 = document.createElement('strong');
+      strong2.textContent = 'dimanche 28 juin 2026';
+      line2.appendChild(document.createTextNode('le '));
+      line2.appendChild(strong2);
+      line2.appendChild(document.createTextNode(' a bien été enregistrée.'));
+      bodyEl.appendChild(line2);
+      bodyEl.appendChild(document.createElement('br'));
+      bodyEl.appendChild(document.createElement('br'));
+
+      var line3   = document.createElement('span');
+      var strong3 = document.createElement('strong');
+      strong3.textContent = total + ' ' + pLabel;
+      line3.appendChild(strong3);
+      line3.appendChild(document.createTextNode(
+        ' : ' + counters.adults + ' ' + adLabel + ', ' + counters.children + ' ' + enLabel + '.'
+      ));
+      bodyEl.appendChild(line3);
+
+      document.getElementById('formBody').style.display = 'none';
+      var panel = document.getElementById('successPanel');
+      panel.style.display = 'block';
+      panel.classList.add('visible');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    })
+    .catch(function (err) {
+      btnSubmit.disabled    = false;
+      btnSubmit.textContent = '✓ \u00A0S\'INSCRIRE À LA FÊTE';
+      _afficherErreurServeur('Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.');
+      console.error('Fetch error:', err);
+    });
+  });
+
+  // ── Affichage d'une erreur serveur inline ─────────────
+  function _afficherErreurServeur(msg) {
+    var existing = document.getElementById('serverError');
+    if (existing) existing.remove();
+
+    var div = document.createElement('div');
+    div.id = 'serverError';
+    div.style.cssText = [
+      'background:#fff0f0',
+      'border:1.5px solid var(--vac-red)',
+      'border-radius:10px',
+      'padding:0.9rem 1.1rem',
+      'margin-bottom:1rem',
+      'font-size:0.84rem',
+      'color:var(--vac-red)',
+      'font-weight:600',
+      'display:flex',
+      'align-items:center',
+      'gap:0.6rem'
+    ].join(';');
+    div.innerHTML = '⚠️ <span>' + msg + '</span>';
+
+    var btnSubmit = document.querySelector('.btn-submit');
+    btnSubmit.parentNode.insertBefore(div, btnSubmit);
+    div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    setTimeout(function () { if (div.parentNode) div.remove(); }, 6000);
+  }
+
+})();
+</script>
+</body>
+</html>
