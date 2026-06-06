@@ -536,6 +536,12 @@
   <div class="card-body" id="formBody">
     <form id="mainForm" novalidate>
 
+      <!-- Honeypot anti-spam (invisible aux humains, rempli par les bots) -->
+      <div style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; overflow:hidden;" aria-hidden="true">
+        <label for="website-url">Site web (ne pas remplir)</label>
+        <input type="text" id="website-url" name="website-url" tabindex="-1" autocomplete="off">
+      </div>
+
       <!-- Nom / Prénom -->
       <div class="col-2">
         <div class="form-group">
@@ -791,6 +797,14 @@
   // ── Submit ─────────────────────────────────────────────
   document.getElementById('mainForm').addEventListener('submit', function (e) {
     e.preventDefault();
+
+    // Honeypot anti-spam : si le champ "website-url" (invisible) est rempli, c'est un bot
+    var honeypot = document.getElementById('website-url');
+    if (honeypot && honeypot.value.trim() !== '') {
+      // Faux succès silencieux : on ne révèle pas que le bot a été détecté
+      return false;
+    }
+
     var valid = true;
 
     var nomEl    = document.getElementById('nom');
