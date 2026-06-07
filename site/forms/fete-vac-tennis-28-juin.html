@@ -1053,13 +1053,12 @@
 
     if (!valid) return;
 
-    // ── Cloudflare Turnstile : récupérer le token ──
+    // ── Cloudflare Turnstile : récupérer le token si disponible ──
+    // Non bloquant côté client ; le backend Apps Script vérifie le token côté serveur.
     var turnstileToken = '';
     var tsInput = document.querySelector('[name="cf-turnstile-response"]');
-    if (tsInput) turnstileToken = tsInput.value;
-    if (!turnstileToken) {
-      _afficherErreurServeur('Veuillez compléter la vérification anti-bot (case Cloudflare).');
-      return;
+    if (tsInput && tsInput.value) {
+      turnstileToken = tsInput.value;
     }
 
     // ── Payload ──
