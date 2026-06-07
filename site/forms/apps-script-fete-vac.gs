@@ -21,7 +21,7 @@
 // ── Config ─────────────────────────────────────────────
 var SHEET_ID    = '1FRWxR4V7eEKDmXSOHPNl9FuIG4H_RESGpFs3eAh5fMY';
 var SHEET_NAME  = 'Inscriptions'; // nom de l'onglet (le script le crée s'il n'existe pas)
-var ADMIN_EMAIL = '';             // optionnel : laisse vide ou mets ton email pour recevoir une notif à chaque inscription
+var ADMIN_EMAIL = 'contact@vactennis.fr'; // email destinataire des notifications d'inscription
 
 // ── Entrée HTTP POST ───────────────────────────────────
 function doPost(e) {

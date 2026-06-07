@@ -6,6 +6,8 @@
   <title>Fête du Club VAC Tennis – 28 Juin 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Cloudflare Turnstile (anti-bot) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -745,6 +747,9 @@
         </label>
       </div>
 
+      <!-- Cloudflare Turnstile widget -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADgNUsOP2BPXKmsK" data-theme="light" data-size="normal" style="margin: 0 0 1.2rem; display: flex; justify-content: center;"></div>
+
       <button type="submit" class="btn-submit">✓ &nbsp;S'INSCRIRE À LA FÊTE</button>
       <button type="button" class="btn-clear" id="btnReset">Effacer le formulaire</button>
 
@@ -1048,6 +1053,15 @@
 
     if (!valid) return;
 
+    // ── Cloudflare Turnstile : récupérer le token ──
+    var turnstileToken = '';
+    var tsInput = document.querySelector('[name="cf-turnstile-response"]');
+    if (tsInput) turnstileToken = tsInput.value;
+    if (!turnstileToken) {
+      _afficherErreurServeur('Veuillez compléter la vérification anti-bot (case Cloudflare).');
+      return;
+    }
+
     // ── Payload ──
     var apports = Array.from(document.querySelectorAll('input[name="apport"]:checked'))
                        .map(function (cb) { return cb.value; });
@@ -1061,7 +1075,8 @@
       adultesBbq : 0,
       enfantsBbq : 0,
       apport     : apports,
-      rgpd       : consent.checked
+      rgpd       : consent.checked,
+      turnstileToken : turnstileToken
     };
 
     if (tennisCoche) { payload.activite.push('tennis');   payload.joueurs    = joueurs; }
