@@ -577,11 +577,16 @@
     .required { color: var(--vac-red); margin-left: 2px; }
     .input-error {
       border-color: var(--vac-red) !important;
-      box-shadow: 0 0 0 3px rgba(224,50,50,0.1) !important;
+      border-width: 2.5px !important;
+      box-shadow: 0 0 0 5px rgba(224,50,50,0.22) !important;
     }
     /* BUG FIX 8 — règle .counter-error séparée pour les counter-box (pas un input,
        .input-error ne s'appliquait pas correctement via style inline) */
-    .counter-error { border-color: var(--vac-red) !important; }
+    .counter-error {
+      border-color: var(--vac-red) !important;
+      border-width: 2.5px !important;
+      box-shadow: 0 0 0 5px rgba(224,50,50,0.22) !important;
+    }
 
     @media (max-width: 500px) {
       .card-body, .header-inner, .card-footer { padding-left: 1.4rem; padding-right: 1.4rem; }
@@ -986,7 +991,7 @@
   // ══════════════════════════════════════════════════════
   function _flashError(el) {
     el.classList.add('input-error');
-    setTimeout(function () { el.classList.remove('input-error'); }, 2500);
+    setTimeout(function () { el.classList.remove('input-error'); }, 5000);
   }
 
   function _isValidEmail(val) {
@@ -999,22 +1004,26 @@
   document.getElementById('mainForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var valid = true;
+    var firstErrorEl = null;
+    var _markError = function (el) { if (!firstErrorEl && el) firstErrorEl = el; };
 
     var nomEl    = document.getElementById('nom');
     var prenomEl = document.getElementById('prenom');
     var emailEl  = document.getElementById('email');
     var consent  = document.getElementById('consentRgpd');
 
-    if (!nomEl.value.trim())          { _flashError(nomEl);    valid = false; }
-    if (!prenomEl.value.trim())       { _flashError(prenomEl); valid = false; }
-    if (!_isValidEmail(emailEl.value)){ _flashError(emailEl);  valid = false; }
+    if (!nomEl.value.trim())          { _flashError(nomEl);    _markError(nomEl);    valid = false; }
+    if (!prenomEl.value.trim())       { _flashError(prenomEl); _markError(prenomEl); valid = false; }
+    if (!_isValidEmail(emailEl.value)){ _flashError(emailEl);  _markError(emailEl);  valid = false; }
 
     // Au moins une activité
     if (!tennisCoche && !bbqCoche) {
       var g = document.getElementById('activityGroup');
-      g.style.outline      = '2px solid rgba(224,50,50,0.45)';
+      g.style.outline      = '3px solid rgba(224,50,50,0.7)';
+      g.style.boxShadow    = '0 0 0 5px rgba(224,50,50,0.22)';
       g.style.borderRadius = '14px';
-      setTimeout(function () { g.style.outline = ''; }, 2500);
+      setTimeout(function () { g.style.outline = ''; g.style.boxShadow = ''; }, 5000);
+      _markError(g);
       valid = false;
     }
 
@@ -1024,7 +1033,7 @@
       joueurs = _getJoueurs();
       if (joueurs.length === 0) {
         var firstInput = document.querySelector('#playersList .player-input');
-        if (firstInput) _flashError(firstInput);
+        if (firstInput) { _flashError(firstInput); _markError(firstInput); }
         valid = false;
       }
     }
@@ -1032,10 +1041,11 @@
     // BBQ : au moins 1 convive
     var totalBbq = counters.adults + counters.children;
     if (bbqCoche && totalBbq === 0) {
-      ['boxAdults', 'boxChildren'].forEach(function (id) {
+      ['boxAdults', 'boxChildren'].forEach(function (id, idx) {
         var b = document.getElementById(id);
         b.classList.add('counter-error');
-        setTimeout(function () { b.classList.remove('counter-error'); }, 2500);
+        if (idx === 0) _markError(b);
+        setTimeout(function () { b.classList.remove('counter-error'); }, 5000);
       });
       valid = false;
     }
@@ -1043,15 +1053,30 @@
     if (!consent.checked) {
       var box = document.getElementById('consentBox');
       box.style.borderColor = 'var(--vac-red)';
+      box.style.borderWidth = '2.5px';
       box.style.background  = '#fff0f0';
+      box.style.boxShadow   = '0 0 0 5px rgba(224,50,50,0.22)';
       setTimeout(function () {
         box.style.borderColor = '';
+        box.style.borderWidth = '';
         box.style.background  = '';
-      }, 2500);
+        box.style.boxShadow   = '';
+      }, 5000);
+      _markError(box);
       valid = false;
     }
 
-    if (!valid) return;
+    if (!valid) {
+      if (firstErrorEl) {
+        try {
+          firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (typeof firstErrorEl.focus === 'function') {
+            setTimeout(function () { firstErrorEl.focus({ preventScroll: true }); }, 450);
+          }
+        } catch (err) { /* navigateur sans support */ }
+      }
+      return;
+    }
 
     // ── Cloudflare Turnstile : récupérer le token si disponible ──
     // Non bloquant côté client ; le backend Apps Script vérifie le token côté serveur.
