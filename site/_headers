@@ -3,14 +3,15 @@
 # Doc: https://developers.cloudflare.com/pages/configuration/headers/
 # =============================================================
 
-# Decap CMS (admin) — CSP plus permissive car charge depuis unpkg
+# Decap CMS (admin) — pas de CSP (le CMS charge beaucoup de ressources externes,
+# le flow OAuth GitHub utilise popup + postMessage que toute CSP stricte peut casser).
+# Accès protégé par OAuth GitHub (config.yml), donc surface d'attaque limitée aux admins.
+# On garde les autres headers protecteurs.
 /admin/*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://*.githubusercontent.com https://oauth-proxy.sebtautou.workers.dev https://identity.netlify.com; frame-src 'self'; base-uri 'self'; object-src 'none'
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=()
 
 # Site public — CSP stricte
 /*
