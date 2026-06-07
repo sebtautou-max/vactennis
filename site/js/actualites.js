@@ -87,7 +87,7 @@ function renderActuPage(page) {
         ${actu.category ? `<span class="label">${actu.category}</span>` : ''}
         <h3>${actu.title}</h3>
         <span class="actu-date">${formatDate(actu.date)}</span>
-        <p>${actu.excerpt}</p>
+        <p>${linkify(actu.excerpt)}</p>
       </div>
     </div>
   `).join('');
@@ -143,6 +143,25 @@ function formatDate(dateStr) {
   if (!dateStr) return '';
   const date = new Date(dateStr);
   return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+// Convertit les URLs (markdown autolink <url> ou URLs nues) en liens cliquables.
+// Échappe également les < et > restants pour éviter qu'ils ne soient interprétés comme du HTML.
+function linkify(text) {
+  if (!text) return '';
+  // 1) Markdown autolink : <https://...>
+  let html = text.replace(/<(https?:\/\/[^\s>]+)>/g, function (m, url) {
+    return '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + url.replace(/^https?:\/\//, '') + '</a>';
+  });
+  // 2) Markdown lien classique [texte](url)
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, function (m, label, url) {
+    return '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + label + '</a>';
+  });
+  // 3) URLs nues (qui ne sont pas déjà dans un <a>)
+  html = html.replace(/(^|[\s,])(https?:\/\/[^\s<]+)/g, function (m, pre, url) {
+    return pre + '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + url.replace(/^https?:\/\//, '') + '</a>';
+  });
+  return html;
 }
 
 document.addEventListener('DOMContentLoaded', loadActualites);
