@@ -3,20 +3,12 @@
 # Doc: https://developers.cloudflare.com/pages/configuration/headers/
 # =============================================================
 
-# Decap CMS (admin) — pas de CSP (le CMS charge beaucoup de ressources externes,
-# le flow OAuth GitHub utilise popup + postMessage que toute CSP stricte peut casser).
-# Accès protégé par OAuth GitHub (config.yml), donc surface d'attaque limitée aux admins.
-# On garde les autres headers protecteurs.
-/admin/*
-  X-Frame-Options: SAMEORIGIN
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-
-# Site public — CSP stricte
+# Headers globaux pour tout le site — la CSP couvre aussi /admin/ (Decap CMS).
+# Cloudflare Pages applique la règle /* à tous les chemins. Les sources externes
+# nécessaires au CMS (unpkg, identity.netlify) sont incluses pour ne pas casser le login.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://*.githubusercontent.com https://script.google.com https://script.googleusercontent.com https://challenges.cloudflare.com; frame-src https://www.helloasso.com https://challenges.cloudflare.com; form-action 'self' https://www.helloasso.com https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
-  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://*.githubusercontent.com https://script.google.com https://script.googleusercontent.com https://challenges.cloudflare.com https://oauth-proxy.sebtautou.workers.dev https://identity.netlify.com https://unpkg.com; frame-src https://www.helloasso.com https://challenges.cloudflare.com; form-action 'self' https://www.helloasso.com https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
