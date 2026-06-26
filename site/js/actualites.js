@@ -155,12 +155,13 @@ function linkify(text) {
   let html = text.replace(/<(https?:\/\/[^\s>]+)>/g, function (m, url) {
     return '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + url.replace(/^https?:\/\//, '') + '</a>';
   });
-  // 2) Markdown lien classique [texte](url)
-  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, function (m, label, url) {
-    return '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + label + '</a>';
+  // 2) Markdown lien classique [texte](url) -- gere aussi [](url) avec texte vide
+  html = html.replace(/\[([^\]]*)\]\((https?:\/\/[^\)]+)\)/g, function (m, label, url) {
+    var displayText = label.trim() || url.replace(/^https?:\/\//, '');
+    return '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + displayText + '</a>';
   });
-  // 3) URLs nues (qui ne sont pas déjà dans un <a>)
-  html = html.replace(/(^|[\s,])(https?:\/\/[^\s<]+)/g, function (m, pre, url) {
+  // 3) URLs nues (acceptent aussi parentheses ouvrantes et crochets avant)
+  html = html.replace(/(^|[\s,(\[])(https?:\/\/[^\s<)\]]+)/g, function (m, pre, url) {
     return pre + '<a href="' + url + '" target="_blank" rel="noopener" style="color:#002e5d; font-weight:600;">' + url.replace(/^https?:\/\//, '') + '</a>';
   });
   return html;
