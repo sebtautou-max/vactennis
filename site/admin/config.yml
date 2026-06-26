@@ -18,5 +18,5 @@ collections:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Catégorie", name: "category", widget: "select", options: ["Tournoi", "Stage", "Compétition", "Club", "Résultats"], required: false }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Image", name: "image", widget: "image", required: false, hint: "Formats acceptés : JPG ou JPEG uniquement. Taille recommandée : 800x500px.", media_library: {config: {multiple: false}} }
+      - { label: "Image", name: "image", widget: "image", required: false, hint: "JPG/JPEG impérativement (pas de PNG transparent). Format paysage 16:9 recommandé, ~1200x675px. Si l_image apparaît vide après publication, lancer : python3 backend/normalize-image.py site/img/uploads/NOM.jpg", media_library: {config: {multiple: false}} }
       - { label: "Contenu", name: "body", widget: "markdown" }
