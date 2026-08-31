@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Planning des cours collectifs — VAC Tennis</title>
+    <meta name="description" content="Planning des cours collectifs du VAC Tennis — page réservée aux adhérents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="img/favicon-256.png">
+    <style>
+      /* ---- Planning des cours collectifs (page adhérents) ---- */
+      .pl-hero{background:linear-gradient(135deg,#002e5d 0%,#00417f 100%);color:#fff;padding:52px 0 46px;text-align:center}
+      .pl-hero h1{color:#fff;font-size:clamp(26px,4vw,38px)}
+      .pl-hero .season{display:inline-block;margin-top:6px;font-size:14px;font-weight:600;color:#5bb8ff;letter-spacing:.08em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+      .pl-hero p{color:rgba(255,255,255,.8);margin:14px auto 22px;max-width:56ch}
+      .pl-searchbox{position:relative;display:flex;align-items:center;max-width:460px;margin:0 auto}
+      .pl-searchbox svg{position:absolute;left:14px;width:17px;height:17px;stroke:#6a7a8a;fill:none;stroke-width:2;pointer-events:none}
+      .pl-searchbox input{width:100%;padding:14px 42px 14px 44px;border:none;border-radius:12px;background:#fff;color:#1a2a3a;font:inherit;font-size:16px}
+      .pl-searchbox input::placeholder{color:#8a99a8}
+      .pl-searchbox input:focus{outline:none;box-shadow:0 0 0 3px rgba(91,184,255,.55)}
+      .pl-searchbox .pl-clear{position:absolute;right:8px;border:none;background:none;color:#6a7a8a;font:inherit;font-size:16px;padding:4px 8px;border-radius:6px;cursor:pointer;display:none}
+      .pl-results{max-width:760px;margin:22px auto 0;display:grid;gap:12px;text-align:left}
+      .pl-hit{background:#fff;border-left:4px solid #5bb8ff;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:14px 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+      .pl-hit .when{min-width:150px}
+      .pl-hit .day{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#002e5d}
+      .pl-hit .hours{font-size:13.5px;color:#6a7a8a;font-variant-numeric:tabular-nums}
+      .pl-hit .who{font-weight:600;color:#1a2a3a;font-size:13.5px}
+      .pl-hit .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:#6a7a8a;margin-top:2px}
+      .pl-count{font-size:13.5px;color:rgba(255,255,255,.85);margin:16px 0 0}
+      mark{background:#fff3bf;color:#5c4400;border-radius:3px;padding:0 2px}
+
+      .pl-main{padding:44px 0 60px}
+      .pl-main h2{margin-bottom:4px}
+      .pl-main .pl-sub{color:#6a7a8a;margin:4px 0 20px}
+      .pl-daytabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+      .pl-daytab{border:1.5px solid #d9e2ec;background:#fff;color:#1a2a3a;border-radius:99px;padding:8px 16px;font:inherit;font-weight:600;font-size:13.5px;cursor:pointer}
+      .pl-daytab:hover{border-color:#5bb8ff}
+      .pl-daytab:focus-visible{outline:3px solid #5bb8ff;outline-offset:2px}
+      .pl-daytab[aria-selected="true"]{background:#002e5d;border-color:#002e5d;color:#fff}
+      .pl-daytab .n{display:none;margin-left:6px;font-size:11px;background:#5bb8ff;color:#00264d;border-radius:99px;padding:1px 6px;font-weight:700}
+      .pl-daytab .n.show{display:inline-block}
+      .pl-courts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+      .pl-court h3{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#6a7a8a;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+      .pl-court h3::before{content:"";width:8px;height:8px;border-radius:2px;background:#5bb8ff}
+      .pl-slot{background:#fff;border:1px solid #e7edf4;border-radius:12px;box-shadow:0 1px 3px rgba(8,35,64,.08),0 6px 18px rgba(8,35,64,.05);padding:14px 16px;margin-bottom:12px}
+      .pl-slot-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+      .pl-time{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:#002e5d;font-variant-numeric:tabular-nums}
+      .pl-coach{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px}
+      .pl-coach::before{content:"";width:7px;height:7px;border-radius:99px;background:currentColor}
+      .pl-grp{display:inline-block;font-size:11.5px;font-weight:600;color:#6a7a8a;border:1px dashed #d9e2ec;border-radius:99px;padding:2px 9px}
+      .pl-players{display:grid;grid-template-columns:1fr 1fr;gap:3px 16px;margin:0;padding:0;list-style:none}
+      .pl-players li{font-size:13.5px;color:#1a2a3a;padding:2px 0;border-bottom:1px solid #eef3f8}
+      .pl-players li:nth-last-child(-n+2){border-bottom:none}
+      .pl-notice{background:#e3f1ff;border:1px solid rgba(91,184,255,.5);border-radius:10px;padding:12px 16px;font-size:13.5px;color:#1a2a3a;margin-top:34px}
+      .c-valentin{background:#e0ecff;color:#1d4fa8}
+      .c-paul{background:#dcf3ec;color:#0c6b52}
+      .c-gwendal{background:#fdeadb;color:#96530f}
+      .c-gabriel{background:#ece4fb;color:#5b3aa8}
+      .c-antoine{background:#fbe3ea;color:#a02a52}
+      .c-milo{background:#dcf1f5;color:#0c6a7d}
+      .c-julien{background:#e5e9fb;color:#3947a8}
+      @media (max-width:760px){
+        .pl-courts{grid-template-columns:1fr}
+        .pl-players{grid-template-columns:1fr}
+        .pl-players li:nth-last-child(-n+2){border-bottom:1px solid #eef3f8}
+        .pl-players li:last-child{border-bottom:none}
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-logo">
+                <a href="index.html">
+                    <img src="img/logo-vac.png" alt="VAC Tennis">
+                    <span class="logo-text"><span>VAC</span> TENNIS</span>
+                </a>
+                <a href="https://www.verneuil78.fr/" target="_blank" rel="noopener" title="Ville de Verneuil">
+                    <img src="img/logo-ville-verneuil-blanc.svg" alt="Ville de Verneuil" style="height: 44px; width: auto;">
+                </a>
+                <a href="https://www.vac78.fr" target="_blank" rel="noopener" title="VAC 78">
+                    <img src="img/logo-vac78.png" alt="VAC 78" style="height: 32px; width: auto;">
+                </a>
+            </div>
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="navbar-links" id="navbar-menu">
+                <a href="index.html">Accueil</a>
+                <a href="ecole-de-tennis.html">École de Tennis</a>
+                <a href="competitions.html">Compétitions</a>
+                <a href="inscriptions.html" class="btn btn-primary">S'INSCRIRE</a>
+                <div class="navbar-social">
+                    <a href="https://www.facebook.com/verneuilac.tennis/" target="_blank" rel="noopener" title="Facebook">
+                        <img src="img/logo-facebook.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/vac.tennis" target="_blank" rel="noopener" title="Instagram">
+                        <img src="img/logo-instagram.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Recherche « Mon créneau » -->
+    <section class="pl-hero">
+        <div class="container">
+            <h1>Planning des cours collectifs</h1>
+            <span class="season">Saison 2025 – 2026</span>
+            <p>Tapez votre nom (ou celui de votre enfant) pour retrouver vos créneaux, ou parcourez le planning jour par jour ci-dessous.</p>
+            <div class="pl-searchbox">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+                <input id="pl-search" type="search" placeholder="Ex. « Dupont »…" autocomplete="off" aria-label="Chercher un nom">
+                <button class="pl-clear" id="pl-clear" aria-label="Effacer la recherche">✕</button>
+            </div>
+            <div class="pl-results" id="pl-results"></div>
+            <p class="pl-count" id="pl-count"></p>
+        </div>
+    </section>
+
+    <!-- Planning par jour -->
+    <section class="pl-main">
+        <div class="container">
+            <h2>Le planning jour par jour</h2>
+            <p class="pl-sub">Cours assurés sur les courts couverts 1 et 2 du gymnase Pierre de Coubertin.</p>
+            <div class="pl-daytabs" role="tablist" aria-label="Jours" id="pl-tabs"></div>
+            <div class="pl-courts" id="pl-courts"></div>
+            <div class="pl-notice">
+                Page réservée aux adhérents du VAC Tennis — merci de ne pas diffuser le lien en dehors du club.
+                Pour toute question sur les groupes ou les horaires, contactez
+                <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a>.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="img/logo-vac.png" alt="VAC Tennis">
+                        <span>VAC TENNIS</span>
+                    </div>
+                    <address>
+                        Gymnase Pierre de Coubertin<br>
+                        Rue Jean Zay, 78480 Verneuil-sur-Seine<br>
+                        <a href="mailto:contact@vactennis.fr">contact@vactennis.fr</a>
+                    </address>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Accueil</a>
+                        <a href="ecole-de-tennis.html">École de Tennis</a>
+                        <a href="competitions.html">Compétitions</a>
+                        <a href="inscriptions.html">S'inscrire</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Légal</h4>
+                    <div class="footer-links">
+                        <a href="mentions-legales.html">Mentions légales</a>
+                        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                        <a href="docs/reglement-interieur.pdf" target="_blank" rel="noopener">Règlement intérieur</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Réseaux Sociaux</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/verneuilac.tennis/" target="_blank" rel="noopener" title="Facebook">
+                            <img src="img/logo-facebook.png" alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/vac.tennis" target="_blank" rel="noopener" title="Instagram">
+                            <img src="img/logo-instagram.png" alt="Instagram">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Verneuil A.C. Tennis. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    const PLANNING = {"saison":"2025–2026","jours":[{"jour":"Lundi","courts":[{"court":"Court couvert 1","creneaux":[{"t":"18h – 19h","coach":"Gabriel","adherents":["L. BOUCHU VAUTIER 12","L. PORTIER 12","S. MOUMENE 12","T. N'GAKA 12","M. SEVESTRE 11","O. SAULAIS 11","A. SILVEIRA LE QUENVEN 12"]},{"t":"19h – 20h","coach":"Antoine","adherents":["C. DUJARRIC","W. ALBERT","G. VERNAY","R. COUAILLAC","T. LEMIRE","M. RAFFIER"]},{"t":"20h – 21h","coach":"Antoine","adherents":["J. MOUTIERS","M. BERTIN","Y. HUET","M. RAZOUKI","S. TRISTAN","F. AKNINE"]},{"t":"21h – 22h30","coach":"Antoine","adherents":["G. VACHER","M. BONNAY","L. GRATTEPANCHE","N. PRUNIERES","JB. GINESTET","B. BRETONNET"]}]},{"court":"Court couvert 2","creneaux":[{"t":"18h – 19h","coach":"Valentin","adherents":["S. BUHOT 12","D. SMORENBURG 11","B. STEFANI 11","M. MENDES 11","C. BOOTHERSTONE 13","E. BOIVINET 11"]},{"t":"19h – 20h","coach":"Valentin","adherents":["D. OULION","M. VALNET","J. LEGRAND","M. CHENUT","J. CHENUT"]},{"t":"20h – 21h","coach":"Valentin","adherents":["S. BARAUD","O. LEBRUN","F. JIMENEZ","M. MAISONNABE","C. BERTHOS","S. PATEL"]},{"t":"21h – 22h30","coach":"Valentin","groupe":"Équipe 2 Seniors Dames","adherents":["C. MARIE","E. CLIQUETEUX","A. RICOIS","M. IPOUA","A. BOULARD","C. GODARD"]}]}]},{"jour":"Mardi","courts":[{"court":"Court couvert 1","creneaux":[{"t":"12h – 13h","coach":"Paul","adherents":["I. IDARY","B. BOUTRON","J. REGO","J. DELECOURT","M. TOUTAIN"]},{"t":"17h – 18h","coach":"Paul","adherents":["M. TOULUCH-FOUET 15","M. LALANCE 14","M. BLARD 15","M. SAMOUDI 14","A. DELCOURT 16","E. VATINET 15","J. DE FERRY 16"]},{"t":"18h – 19h","coach":"Paul","adherents":["T. TAUTOU 10","C. KUHN 08","E. BARDIN 09","A. LESSERTOIS 10","N. LECLERE 06"]},{"t":"19h – 20h","coach":"Paul","adherents":["A. GAILLEDRAT","B. TOUNKARA","L. BLANCHARD","S. GUYOT","E. VENACTER"]},{"t":"20h – 21h","coach":"Paul","adherents":["G. STEFANI","S. TAUTOU","M. ANDRE","H. D'ARGENCE","M. JANSEN","C. DUSCH"]},{"t":"21h – 22h30","coach":"Paul","adherents":["G. TAUTOU","M. MAS","R. RIOU","J. AMAT","N. LESAULNIER"]}]},{"court":"Court couvert 2","creneaux":[{"t":"17h – 18h","coach":"Valentin","adherents":["E. DELCOURT 18","M. DELCOURT 18","L. BLARD 18","H. MERCIER 18","M. TARANCON FRANCO 18","V. RAFFIER 19","V. RAFFIER 19","L. MAC 17"]},{"t":"18h – 19h","coach":"Valentin","adherents":["M. GAYARD 10","J. DEOM 10","A. FORTIN 08","C. DURIEU 10","A. GONZALES 08"]},{"t":"19h – 20h","coach":"Valentin","adherents":["A. DELFOSSE","C. RONDU","E. GUEDJ","I. LABAT","S. SAUVAGE","F. LE DOUJET"]},{"t":"20h – 21h","coach":"Valentin","adherents":["M. BOOTHERSTONE","B. GREVIN","P. GODARD","B. FARIA","J. GAYARD"]},{"t":"21h – 22h30","coach":"Valentin","groupe":"Équipe 1 Seniors Dames","adherents":["A. BOICHE","L. BARRE","I. AMMAR","S. GODARD","E. PLUMAS"]}]}]},{"jour":"Mercredi","courts":[{"court":"Court couvert 1","creneaux":[{"t":"10h – 11h","coach":"Paul","adherents":["E. BOOTHERSTONE 16","L. BARDIN 16","C. BARDIN 16","G. KAMAYOU 16","L. GAYARD 15","F. KAMDEM 16"]},{"t":"11h – 12h","coach":"Paul","adherents":["L. DENEUX 17","M. NDIAYE 17","A. DENEUX 16","M. DENEUX 17","D. EL ZAHIR 17","G. BOUCHU VAUTIER 16","G. DERKENNE 16","O. LOGETTE 16"]},{"t":"12h – 13h","coach":"Paul","adherents":["J. SALL 15","J. SALL 15","M. JANSEN 15","N. HADJ MOHAMED 15","I. ZHRIBI CORVELLEC 16","N. LEMIRE 16","A. LE PAN COELHO 16"]},{"t":"13h – 14h","coach":"Gwendal","adherents":["R. HENRIO 14","W. GENET 14","S. ANDRE 14","M. SAMOUDI 14","R. KAMDEM 15","J. HABOUBI 14"]},{"t":"14h – 15h","coach":"Gwendal","adherents":["N. COUTO 17","A. HAUCHARD 17","M. LONFIER 17","G. DES RIEUX 18","M. GINOUVIER 18","C. BAZONCOURT 17"]},{"t":"15h – 16h","coach":"Gwendal","adherents":["C. TAUTOU 15","J. SAUVAGE 15","O. ALOKPO 15","A. COSTA 15","A. LOTTERIE 16"]},{"t":"16h – 17h","coach":"Gwendal","adherents":["A. LE MOEL 14","M. RENAULT 14","A. TRAORE 14","V. ROJAS 15","C. VEDRENNE 15","A. HABOUBI 12","R. HAMMOUCH 15"]},{"t":"17h – 18h","coach":"Paul","adherents":["E. BOIVINET 11","A. SINGER 12","H. PIETTE 11","M. SEVESTRE 11","G. BLONDEL 11","T. N'GAKA 12","H. RICHARD 11"]},{"t":"18h – 19h30","coach":"Gwendal","adherents":["A. LESASSIER 09","L. HUGUET 08","A. HALAY 09","G. DROULERS 09","E. RABARDEL 09","A. BREAZU 09"]},{"t":"19h30 – 21h","coach":"Gwendal","adherents":["N. ROUCHES","S. NAVET","Y. CAILLOT","Q. PRIOU","O. HEINRICH","A. FOURGEAUX"]}]},{"court":"Court couvert 2","creneaux":[{"t":"10h – 11h","coach":"Gwendal","adherents":["L. REYMOND 21","A. PIEKUT 19","C. PIEKUT 21","C. MARTIN 19","L. CHAPON 19","V. ANDRE 19"]},{"t":"11h – 12h","coach":"Gwendal","groupe":"Mini-Tennis","adherents":["J. FLAMANT 21","L. D'ANGELO 20","T. ROGER 20","P. TRAGIN 22","A. CHARROUD 22","T. PIEKUT 22","V. TRAGIN 20","R. CHRETIEN 20"]},{"t":"12h – 13h","coach":"Gwendal","adherents":["L. ZHRIBI-CORVELLEC 18","E. GINOUVIER 19","C. LESSERTOIS 19","L. HADJ MOHAMED 19","L. LEMIRE 18","R. THERY 19","A. BOKO 19"]},{"t":"13h – 14h","coach":"Valentin","adherents":["N. ROGER 15","M. MARTIN 15","B. COLOMB 14","H. GIRARD 16","C. GIRARD 14","E. ROCOFFORT 15"]},{"t":"14h – 15h","coach":"Valentin","groupe":"Mini-Tennis (avec répétiteurs)","adherents":["E. SECHIER 21","F. BOITEAU 20","T. CORREIA 20","L. KAMDEM 20","A. COUTURIER 21","R. BOITEAU 21","V. RAFFIER 20","M. ROUVROY 22","O. GIRARD 20","M. CHAPON 21","M. RAZOUKI 20","A. HOMINAL 21"]},{"t":"15h – 16h","coach":"Valentin","adherents":["A. RAZOUKI 16","C. SAGNET 16","A. HAMROUNI 16","C. RIOU 16","L. DELECOURT 17"]},{"t":"16h – 17h","coach":"Valentin","adherents":["N. ROGER 12","G. TAUTOU 12","M. MARTIN VIVER 12","M. DOS SANTOS 12"]},{"t":"17h – 18h","coach":"Valentin","adherents":["P. GAYARD 12","C. BOOTHERSTONE 13","N. CAILLOT 13","M. MERCAT 12","M. HUVE 13","I. BADRI 12"]},{"t":"18h – 19h30","coach":"Paul","adherents":["Y. CHERRARA 09","M. MOUTIERS 09","R. CARRION FRITSHI 10","L. CHOPIN 10","A. TEYANT 10","T. TORDJMANE 10"]},{"t":"19h30 – 21h","coach":"Paul","adherents":["V. PILLET","E. LENEZE","S. IPOUA","S. N'GAKA","R. DAVID","V. DELAHAYE"]},{"t":"21h – 22h30","coach":"Paul","adherents":["JP. MAUREILLE","R. JANSEN","S. TAUTOU","F. HUGUET","P. RENARD","C. WILMANN","L. DELTEIL","A. PROFFIT","B. HUVE"]}]}]},{"jour":"Jeudi","courts":[{"court":"Court couvert 1","creneaux":[{"t":"17h – 18h","coach":"Paul","adherents":["A. LESSERTOIS 15","A. TRAORE 14","A. DESPREZ 15","M. SAMOUDI 14","A. HAMROUNI-MAGNAN 16","A. SCHMIT 13"]},{"t":"18h – 19h","coach":"Paul","adherents":["A. CAMPAGNE 13","A. SILVEIRA LE QUENVEN 12","C. IDARY 11","T. COLIN 12","I. BENHAMADOUCHE 11","C. BARAUD 12","A. NGATCHA KUINGA 11"]},{"t":"19h – 20h","coach":"Paul","adherents":["L. DORE","S. N'GAKA","AS. HUVE","T. HURET","C. ALIMENTI","C. ROMAR"]},{"t":"20h – 21h30","coach":"Paul","groupe":"Équipe 2 Seniors Hommes","adherents":["P. NICAULT","J. GABELLE","L. BRUN","M. MAS","F. ALEXANDRE"]}]},{"court":"Court couvert 2","creneaux":[{"t":"17h – 18h","coach":"Valentin","adherents":["E. MALIGE 16","A. USTUN 17","A. DANSO 16","L. MAC 17","G. BOITEAU 16"]},{"t":"18h – 19h","coach":"Valentin","adherents":["F. GARNIER 12","T. FRECHET 12","S. BOUTRON 12","P. HURET 13","M. BOITEAU 12","J. BOITEAU 13","E. FRANCOIS-DAINVILLE 12"]},{"t":"19h – 20h","coach":"Valentin","adherents":["C. ROMAR","O. DELURIER","C. LE HEC'H","V. COLIN","G. VERNAY","A. SEZEN"]},{"t":"20h – 21h","coach":"Valentin","adherents":["F. BRUN","X. MARTIN","E. SCUOTTO","J. BOULERNE","A. KUHN","D. TOUTON"]},{"t":"21h – 22h30","coach":"Valentin","groupe":"Équipe 1 Seniors Hommes","adherents":["V. NICAULT","P. VIOLLET","A. BOSCH","G. TAUTOU"]}]}]},{"jour":"Vendredi","courts":[{"court":"Court couvert 1","creneaux":[{"t":"17h – 18h","coach":"Valentin","adherents":["C. BAZONCOURT 17","L. DELECOURT 17","A. CHENUT 16","E. BEHAR 17","C. RIOU 16"]},{"t":"18h – 19h","coach":"Valentin","adherents":["M. MARTIN VIVIER 13","S. BUHOT 12","N. ROGER 12","G. TAUTOU 12","M. DOS SANTOS 12"]},{"t":"19h – 20h","coach":"Valentin","adherents":["L. AMMAR 10","R. COMPAROT 10","Y. LECONTE 10","A. CRAPAT 11","N. HUVE 11"]},{"t":"20h – 21h","coach":"Valentin","adherents":["N. LESAULNIER 10","E. BRUNET 10","G. TAUTOU 08","A. LESSERTOIS 10","E. SCUOTTO 10"]},{"t":"21h – 22h30","coach":"Valentin","adherents":["G. GAUTHIER","K. DIGOUG","G. COUAILLAC","V. GODARD","T. COMPAROT","M. LESAULNIER","S. NICOLE","C. PLUMAS","X. ROGER"]}]},{"court":"Court couvert 2","creneaux":[{"t":"17h – 18h","coach":"Paul","adherents":["B. BRETONNET 15","M. MARTIN 15","H. GIRARD 16","B. COLOMB 14","C. GIRARD 14"]},{"t":"18h – 19h","coach":"Paul","adherents":["P. DEBRAY 09","J. STEFANI 09","G. DIDELOT 10","N. BLONDEL 09","M. COLIN 08","J. GREVIN 09"]},{"t":"19h – 20h","coach":"Paul","adherents":["F. JIMENEZ","M. BERTIN","S. VADCARD","C. ROCCOFORT","C. STEFANI","E. AZMI"]},{"t":"20h – 21h","coach":"Paul","adherents":["V. BRUNEEL","A. RICOIS","G. DROULERS","C. GODARD","S. DEZEUZE","H. PAMELA"]}]}]},{"jour":"Samedi","courts":[{"court":"Court couvert 1","creneaux":[{"t":"9h – 10h","coach":"Gwendal","adherents":["P. GAYARD 12","A. SINGER 12","L. LEFEVRE D'ARGENCE 12","Q. DERKENNE 14","LG. SIMON 12","H. LESSERTOIS 12","L. VEDRENNE 11"]},{"t":"10h – 11h","coach":"Gwendal","adherents":["G. DE BANIERES","N. JAMET","P. LESSERTOIS","B. HUVE","B. GREVIN","F. SAUVAGE"]},{"t":"11h – 12h","coach":"Gwendal","adherents":["C. DURANTON","S. KLEIN","C. COLIN","C. ESSAID","A. POTIER","Y. BENAINI"]},{"t":"12h – 13h","coach":"Gwendal","adherents":["M. MERCAT 10","N. YOKA 10","E. FORTIN 11","A. BERTIN 08","C. BARON 11","L. PIETTE 10"]},{"t":"13h – 14h","coach":"Milo","adherents":["H. HUARD 14","A. LEFEVRE D'ARGENCE 14","H. DE JACGER 14","S. FOURGEAUX 14","M. RENAULT 14","J. HABOUBI 14"]},{"t":"14h – 15h","coach":"Milo","adherents":["G. PLEYNET 15","M. JAGOREL 15","L. MONNIER 16","K. TAMTO 16","V. DUSSEAUX 17","Y. FOURGEAUX 16","L. DE FERRY 16"]},{"t":"15h – 16h","coach":"Gabriel","adherents":["H. AZMI 17","M. CONESA 15","T. ZAMMAR 16","M. ZAMMAR 16","E. LE MOEL 16","I. BIBA 17","L. TUAILLON 16"]},{"t":"16h – 17h","coach":"Gabriel","adherents":["P. DU 10","J. LOUIS 09","Y. CHERRARA 09","N. AGACHE 10","M. MARY 09","M. MOUTIERS 09","T. HENIN 09"]},{"t":"17h – 18h","coach":"Gabriel","adherents":["A. GONZALES 08","V. GAUTHIER 09","T. CONNOLLY","J. LABAT 07","M. BANGA 09","A. GESTIN 08","M. COLIN 08"]}]},{"court":"Court couvert 2","creneaux":[{"t":"9h – 10h","coach":"Paul","adherents":["F. LECA 18","L. CEN 19","Y. HEDHLJ 19","E. DEMEESTERE 18","K. TAMTO 18","E. HEDHLJ 19","S. SILAABDI 17","E. LEFEVRE D'ARGENCE 18"]},{"t":"10h – 11h","coach":"Paul","adherents":["S. DE LOPEZ 13","N. ROGER 15","B. BRETONNET 15","E. VAILLANT 12","I. BADRI 12","M. HUVE 13"]},{"t":"11h – 12h","coach":"Paul","groupe":"Mini-Tennis (avec répétiteurs)","adherents":["G. TETREL 20","P. ANDRE 21","L. BOTTEN 21","A. NILION 20","M. TETREL 22","T. KOUASSI 21","L. BEAUGENDRE 21","O. BAUER 22","L. LENCLUD 20","A. RENARD 20","R. ANTOINE 20"]},{"t":"12h – 13h","coach":"Paul","adherents":["M. MENDES 11","M. BALEMBOIS 11","D. SMORENBURG 11","N. HUVE 11","M. MERCAT 12","M. GAYARD 10"]},{"t":"13h – 14h","coach":"Paul","adherents":["R. HENRIO 14","G. DUDEK 13","S. ANDRE 14","B. JAGOREL 13","L. BALEMBOIS 14","A. VALNET 14","J. VILETIER 16"]},{"t":"14h – 15h","coach":"Gwendal","groupe":"Avec répétiteur","adherents":["D. PLEYNET 19","S. MONNIER 19","N. AZMI 20","T. PLEYNET 18","T. GONNORD 19","A. PERIAT 19","E. TERRIER 19","H. BAUER 19","L. DEMEA 19"]},{"t":"15h – 16h","coach":"Julien","groupe":"Avec répétiteur","adherents":["L. BERTIN 13","AC. YOKA 12","L. TARANCON 13","J. GRANGE 12","A. GREVIN 12","L. NOBLECOURT 13","G. ROTTIERS 13"]},{"t":"16h – 17h","coach":"Julien","adherents":["S. BALLAFKIH 09","L. SAUVAGE 09","B. JASAR 09","B. BENNETT 09","P. SAUVAGE 09","E. AKDAG 09","M. TOUTAIN 09"]},{"t":"17h – 18h","coach":"Julien","adherents":["E. BARDIN 09","M. GRATTEPANCHE 08","T. TANRISEVER 08","N. LECLERE 06","V. BRUNEEL 07","C. KUHN 08"]}]}]}]};
+
+    const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    function coachChip(coach){
+      return '<span class="pl-coach c-'+coach.toLowerCase()+'">'+esc(coach)+'</span>';
+    }
+    function hl(name,q){
+      if(!q) return esc(name);
+      const i = norm(name).indexOf(q);
+      if(i<0) return esc(name);
+      return esc(name.slice(0,i))+'<mark>'+esc(name.slice(i,i+q.length))+'</mark>'+esc(name.slice(i+q.length));
+    }
+    function query(){
+      const q = norm(document.getElementById('pl-search').value.trim());
+      return q.length>=2 ? q : '';
+    }
+
+    /* ---- recherche « mon créneau » ---- */
+    function renderSearch(){
+      const raw = document.getElementById('pl-search').value.trim();
+      const q = query();
+      const res = document.getElementById('pl-results');
+      const cnt = document.getElementById('pl-count');
+      res.innerHTML=''; cnt.textContent='';
+      document.getElementById('pl-clear').style.display = raw ? 'block' : 'none';
+      if(q){
+        const hits=[];
+        PLANNING.jours.forEach(j=>j.courts.forEach(c=>c.creneaux.forEach(s=>{
+          s.adherents.forEach(a=>{ if(norm(a).includes(q)) hits.push({jour:j.jour,court:c.court,slot:s,name:a}); });
+        })));
+        hits.forEach(h=>{
+          const d=document.createElement('div');
+          d.className='pl-hit';
+          d.innerHTML='<div class="when"><div class="day">'+esc(h.jour)+'</div><div class="hours">'+esc(h.slot.t)+'</div></div>'
+            +'<div style="flex:1;min-width:200px"><div class="who">'+hl(h.name,q)+'</div>'
+            +'<div class="meta">'+esc(h.court)+' · '+coachChip(h.slot.coach)
+            +(h.slot.groupe? ' · <span>'+esc(h.slot.groupe)+'</span>':'')+'</div></div>';
+          res.appendChild(d);
+        });
+        cnt.textContent = hits.length
+          ? hits.length+' créneau'+(hits.length>1?'x':'')+' trouvé'+(hits.length>1?'s':'')+' pour « '+raw+' »'
+          : 'Aucun créneau trouvé pour « '+raw+' » — vérifiez l\'orthographe ou contactez le club.';
+      }
+      renderDay();
+    }
+
+    /* ---- planning par jour ---- */
+    let curDay = 0;
+    const tabs = document.getElementById('pl-tabs');
+    PLANNING.jours.forEach((j,i)=>{
+      const b=document.createElement('button');
+      b.className='pl-daytab'; b.setAttribute('role','tab');
+      b.innerHTML = esc(j.jour)+'<span class="n"></span>';
+      b.addEventListener('click',()=>{curDay=i;renderDay();});
+      tabs.appendChild(b);
+    });
+    function renderDay(){
+      const q = query();
+      [...tabs.children].forEach((b,i)=>{
+        b.setAttribute('aria-selected', i===curDay ? 'true':'false');
+        const badge=b.querySelector('.n');
+        if(q){
+          let n=0;
+          PLANNING.jours[i].courts.forEach(c=>c.creneaux.forEach(s=>{n+=s.adherents.filter(a=>norm(a).includes(q)).length;}));
+          badge.textContent=n; badge.classList.toggle('show', n>0);
+        } else badge.classList.remove('show');
+      });
+      const day = PLANNING.jours[curDay];
+      const wrap = document.getElementById('pl-courts');
+      wrap.innerHTML='';
+      day.courts.forEach(court=>{
+        const col=document.createElement('div');
+        col.className='pl-court';
+        col.innerHTML='<h3>'+esc(court.court)+'</h3>';
+        court.creneaux.forEach(s=>{
+          const card=document.createElement('div');
+          card.className='pl-slot';
+          card.innerHTML =
+            '<div class="pl-slot-head"><span class="pl-time">'+esc(s.t)+'</span>'
+            +coachChip(s.coach)
+            +(s.groupe? '<span class="pl-grp">'+esc(s.groupe)+'</span>':'')
+            +'</div><ul class="pl-players">'+s.adherents.map(a=>'<li>'+hl(a,q)+'</li>').join('')+'</ul>';
+          col.appendChild(card);
+        });
+        wrap.appendChild(col);
+      });
+    }
+    document.getElementById('pl-search').addEventListener('input',renderSearch);
+    document.getElementById('pl-clear').addEventListener('click',()=>{
+      const inp=document.getElementById('pl-search');
+      inp.value=''; renderSearch(); inp.focus();
+    });
+    renderDay();
+    </script>
+</body>
+</html>
