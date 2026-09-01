@@ -1,5 +1,5 @@
 ---
-title: Assemblée Générale VAC Tennis
+title: Assemblée Générale VAC Tennis le 17 Septembre
 category: Club
 date: 2026-09-17T00:00:00.000Z
 image: /img/uploads/ag.jpg
