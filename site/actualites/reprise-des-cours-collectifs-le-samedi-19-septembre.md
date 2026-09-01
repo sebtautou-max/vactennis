@@ -4,4 +4,4 @@ category: Club
 date: 2026-09-19T00:00:00.000Z
 image: /img/uploads/arthur.jpg
 ---
-Les cours collectifs reprendront le **samedi 19 septembre** Le planning des cours est en préparation et vous sera communiqué par mail dans les jours suivant le forum.
+Les cours collectifs reprendront le **samedi 19 septembre** Le planning des cours est en préparation et vous sera communiqué dans les prochains jours.
