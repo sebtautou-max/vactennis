@@ -1,11 +1,7 @@
 ---
-title: "ANNULÉE — Fête du Club du 28 juin"
+title: Fête du Club du Dimanche 4 Octobre
 category: Club
-date: 2026-06-28T08:00:00.000Z
-image: /img/uploads/vac-tennis-fete-2806-annulee.jpg
+date: 2026-10-04T10:00:00.000Z
+image: /img/uploads/vac-tennis-fete-0410.jpg
 ---
-⚠️ La fête du club prévue ce dimanche 28 juin est annulée suite à l'arrêté préfectoral du 25 juin 2026 (restriction des activités sportives liée à la vigilance rouge canicule).
-
-Une reprogrammation est envisagée à la rentrée de septembre.
-
-👉 Détails et message complet du Bureau : https://vactennis.fr/forms/fete-vac-tennis-28-juin
+Fête du club reprogramée au dimanche 4 octobre : jeux en mixte le matin, barbecue convivial et finales des tournois internes.
