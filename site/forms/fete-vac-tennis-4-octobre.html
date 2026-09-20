@@ -1158,9 +1158,10 @@
     .then(function (r) { return r.json(); })
     .then(function (data) {
       btnSubmit.disabled    = false;
-      btnSubmit.textContent = '\u2713 \u00a0S\'INSCRIRE \u00c0 LA F\u00caTe';
+      btnSubmit.textContent = '\u2713 \u00a0S\'INSCRIRE \u00c0 LA F\u00caTE';
 
       if (!data.success) {
+        _resetTurnstile();
         _afficherErreurServeur(data.message || 'Erreur lors de l\'envoi. Veuillez r\u00e9essayer.');
         return;
       }
@@ -1220,11 +1221,17 @@
     })
     .catch(function (err) {
       btnSubmit.disabled    = false;
-      btnSubmit.textContent = '\u2713 \u00a0S\'INSCRIRE \u00c0 LA F\u00caTe';
-      _afficherErreurServeur('Impossible de contacter le serveur. V\u00e9rifiez votre connexion et r\u00e9essayez.');
+      btnSubmit.textContent = '\u2713 \u00a0S\'INSCRIRE \u00c0 LA F\u00caTE';
+      _resetTurnstile();
+      _afficherErreurServeur('Impossible de contacter le serveur. R\u00e9essayez dans un instant \u2014 si le probl\u00e8me persiste, \u00e9crivez-nous \u00e0 contact@vactennis.fr.');
       console.error('Fetch error:', err);
     });
   });
+
+  // ── Reset du widget Turnstile (un jeton n'est valable qu'une fois) ──
+  function _resetTurnstile() {
+    try { if (window.turnstile && typeof turnstile.reset === 'function') turnstile.reset(); } catch (e) {}
+  }
 
   // ── Erreur serveur inline ──────────────────────────────
   function _afficherErreurServeur(msg) {
