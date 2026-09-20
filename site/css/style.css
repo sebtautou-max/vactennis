@@ -402,6 +402,12 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
   border: 2px solid #5bb8ff; margin: 0 auto 6px; display: block;
 }
+.bureau-photo--initials {
+  display: flex; align-items: center; justify-content: center;
+  background: #002e5d; color: #fff;
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 17px; letter-spacing: 0.5px; line-height: 1;
+}
 @media (max-width: 768px) {
   .bureau-banner { padding: 20px 16px; }
   .bureau-members {
@@ -479,6 +485,7 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   .stat-number { font-size: 1.8rem; }
   .bureau-members { grid-template-columns: repeat(3, 1fr); gap: 14px 4px; }
   .bureau-photo { width: 44px; height: 44px; }
+  .bureau-photo--initials { font-size: 15px; }
   .bureau-name { font-size: 11px; }
   .bureau-role { font-size: 10px; }
 }
