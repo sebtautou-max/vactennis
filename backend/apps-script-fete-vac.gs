@@ -1,5 +1,5 @@
 /**
- * VAC Tennis — Backend du formulaire "Fête du Club 28 juin 2026"
+ * VAC Tennis — Backend du formulaire "Fête du Club 4 octobre 2026"
  *
  * Format de sortie aligné sur l'onglet "Inscriptions" du Google Sheet :
  *   Horodatage | Nom | Prénom | Email | Activité(s) | Joueurs tennis |
@@ -7,7 +7,7 @@
  *
  * IMPORTANT : ce fichier est une COPIE DE RÉFÉRENCE pour le versioning.
  * Le code qui tourne réellement est dans l'éditeur Apps Script :
- *   https://script.google.com → projet "VAC Fête 28 juin – Backend"
+ *   https://script.google.com → projet "VAC Fête 4 octobre – Backend"
  *
  * Pour reporter ces changements dans le projet réel :
  * 1. Ouvre l'éditeur Apps Script
@@ -124,7 +124,7 @@ function doPost(e) {
       try {
         MailApp.sendEmail({
           to: cfg.adminEmail,
-          subject: 'VAC – Nouvelle inscription Fête 28 juin : ' + data.prenom + ' ' + data.nom,
+          subject: 'VAC – Nouvelle inscription Fête 4 octobre : ' + data.prenom + ' ' + data.nom,
           htmlBody:
             '<p>Nouvelle inscription à la Fête du club :</p>' +
             '<ul>' +
@@ -154,7 +154,7 @@ function doPost(e) {
 function doGet() {
   return _json({
     ok: true,
-    service: 'VAC Fête 28 juin - backend',
+    service: 'VAC Fête 4 octobre - backend',
     method: 'POST attendu en JSON',
     timestamp: new Date()
   });
